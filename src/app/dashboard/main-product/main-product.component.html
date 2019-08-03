@@ -1,0 +1,44 @@
+<div class="schedule" id="shw1" *ngIf="showjobID">
+    <div class="wrapper fadeInDown mt">
+        <div id="formContent" class="">
+            <!-- Tabs Titles -->
+
+            <!-- add main product Form -->
+            <form class="md-form">
+
+                <div class="cancle-button">
+                    <span class="cnav"><button id="shw2" (click)="myjob(false)"
+                            [routerLink]="['/adminpage']">&times;</button></span>
+                    <h4>Main Product</h4>
+                </div>
+                <div style="padding: 10px;">
+                </div>
+
+                <div class=" col-xs-12">
+                    <label class="control-label ml">Name</label>
+                    <div class="input-group place-holder">
+                        <input type="text" [(ngModel)]="uploadgin.name" id="price" class="form-control" name="price" placeholder="Enter Name">
+                    </div>
+                </div>
+
+                <div class=" col-xs-12">
+                    <label class="control-label ml">Price</label>
+                    <div class="input-group place-holder">
+                        <input type="text" [(ngModel)]="uploadgin.price" id="name" class="form-control" name="name" placeholder="Enter Price">
+                    </div>
+                </div>
+
+                <div class=" col-xs-12">
+                    <label class="control-label ml">Upload Image</label>
+                    <div class="input-group place-holder">
+                        <input type="file" (change)="uploadImage('image', $event.target.files)" id="upload" class="form-control">
+                    </div>
+                </div>
+
+                <div class=" col-xs-12">
+                    <button class="btn btn-primary pr" type="submit" (click)="onSubmit()">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

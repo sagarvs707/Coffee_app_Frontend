@@ -1,0 +1,48 @@
+<div class="schedule" id="shw1" *ngIf="showjobID">
+    <div class="wrapper fadeInDown mt">
+        <div id="formContent" class="">
+            <!-- Tabs Titles -->
+
+            <!-- add main product Form -->
+            <form class="md-form">
+
+                <div class="cancle-button">
+                    <span class="cnav"><button id="shw2" (click)="myjob(false)"
+                            [routerLink]="['/adminpage']">&times;</button></span>
+                    <h4>Measure and Stock</h4>
+                </div>
+                <div style="padding: 10px;">
+                </div>
+                <div class=" col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label ml">Select Sub product</label>
+                        <select class="form-control" id="sel1">
+                            <option value="">Select Sub product</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class=" col-xs-12">
+                    <label class="control-label ml">Measure</label>
+                    <div class="input-group place-holder">
+                        <input type="text" id="name" class="form-control" name="name" placeholder="Main product name">
+                    </div>
+                </div>
+
+                <div class=" col-xs-12">
+                    <label class="control-label ml">Stock</label>
+                    <div class="input-group place-holder">
+                        <input type="text" id="price" class="form-control" name="price" placeholder="Enter Tax">
+                    </div>
+                </div>
+
+                <div class=" col-xs-12">
+                    <button class="btn btn-primary pr" [routerLink]="['/price_weight']" type="submit">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

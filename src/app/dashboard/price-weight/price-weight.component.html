@@ -1,0 +1,48 @@
+<div class="schedule" id="shw1" *ngIf="showjobID">
+    <div class="wrapper fadeInDown mt">
+        <div id="formContent" class="">
+            <!-- Tabs Titles -->
+
+            <!-- add main product Form -->
+            <form class="md-form">
+
+                <div class="cancle-button">
+                    <span class="cnav"><button id="shw2" (click)="myjob(false)"
+                            [routerLink]="['/adminpage']">&times;</button></span>
+                    <h4>Price and Weight</h4>
+                </div>
+                <div style="padding: 10px;">
+                </div>
+                <div class=" col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label ml">Select Measure</label>
+                        <select class="form-control" id="sel1">
+                            <option value="">Select Measure</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class=" col-xs-12">
+                    <label class="control-label ml">Price</label>
+                    <div class="input-group place-holder">
+                        <input type="text" id="name" class="form-control" name="name" placeholder="Enter Price">
+                    </div>
+                </div>
+
+                <div class=" col-xs-12">
+                    <label class="control-label ml">Weight</label>
+                    <div class="input-group place-holder">
+                        <input type="text" id="price" class="form-control" name="price" placeholder="Enter Weight">
+                    </div>
+                </div>
+
+                <div class=" col-xs-12">
+                    <button class="btn btn-primary pr" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
