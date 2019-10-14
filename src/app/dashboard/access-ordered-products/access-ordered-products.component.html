@@ -1,0 +1,491 @@
+<!-- For demo purpose -->
+<div class="container text-white text-center heading">
+    <h1 class="display-4" style="font-weight: bolder; color: #4d2c16">Product details</h1>
+</div>
+<!-- End -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+            <div class="card">
+                <div class="card-body ">
+                    <h4 class="card-title" style="text-align: center; color: rgba(85, 42, 29, 0.897); padding-bottom: 13px;">
+                        Main Product</h4>
+                    <div class="panel-body">
+                        <div class="table-responsive scroll-box">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="border-0 bg-light">
+                                            <div class="p-2 px-3 text-uppercase">Product Name</div>
+                                        </th>
+                                        <th scope="col" class="border-0 bg-light">
+                                            <div class="py-2 text-uppercase">Price</div>
+                                        </th>
+                                        <th scope="col" class="border-0 align-middle bg-light">
+                                            <div class="py-2 text-uppercase align-middle">Action</div>
+                                    <tr>
+                                        <th class="border-0 bg-light"> View</th>
+                                        <th class="border-0 bg-light"> Edit</th>
+                                        <th class="border-0 bg-light"> Delete</th>
+                                    </tr>
+                                    </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let pro of data" class="removetopline">
+                                        <th scope="row" class="border-0">
+                                            <div class="p-2">
+                                                <img src="http://68.183.84.37:8000/{{pro.main_img}}" width="70"
+                                                    class="img-fluid rounded shadow-sm">
+                                                <div class="ml-3 d-inline-block align-middle">
+                                                    <h5 class="mb-0"> <a
+                                                            class="text-dark d-inline-block align-middle">{{pro.name}}</a>
+                                                    </h5>
+                                                    <h5 class="mb-0"><a class="editImage"
+                                                            (click)="get_single_main_pro(pro.id)" data-toggle="modal"
+                                                            data-target="#updateimage">Change
+                                                            Image</a></h5>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="border-0 align-middle"><strong>Rs {{pro.price}}</strong></td>
+                                        <td class="align-middle">
+                                    <tr>
+                                        <td style="cursor: pointer" (click)="products(pro.subPro)"><img
+                                                src="assets/images/icons/view.png" width="16px" style="cursor: pointer">
+                                        </td>
+
+                                        <td style="cursor: pointer"><img src="assets/images/icons/edit.png" width="16px"
+                                                style="margin: 0px 0px 0px 20px" (click)="get_single_main_pro(pro.id)"
+                                                data-toggle="modal" data-target="#mainModel"></td>
+
+                                        <td style="cursor: pointer"><img src="assets/images/icons/trash.png"
+                                                width="16px" style="margin: 0px 0px 0px 20px"
+                                                (click)="on_delete(pro.id)"></td>
+                                    </tr>
+                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="text-align: center; color: rgba(85, 42, 29, 0.897); padding-bottom: 13px;">
+                        Sub Product Details</h4>
+                    <div class="panel-body">
+                        <div class="table-responsive scroll-box">
+                            <h1 *ngIf="deliveryDisplay" style="text-align: center; color: #cccc; margin-top: 8%">
+                                Sub Product</h1>
+                            <table *ngIf="!deliveryDisplay" class="table table-bordered">
+                                <thead class="txt_left">
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Tax</th>
+                                        <th>Discount</th>
+                                        <th>Description</th>
+                                        <th>Product added date</th>
+                                        <th>
+                                            <div>Action</div>
+                                    <tr>
+                                        <th class="border-0"> View</th>
+                                        <th class="border-0"> Edit</th>
+                                        <th class="border-0"> Delete</th>
+                                    </tr>
+                                    </th>
+                                    </tr>
+                                </thead>
+                                <tbody style="background-color:#dddcc7cb">
+                                    <tr *ngFor="let i of subdata">
+                                        <td>
+                                            <div class="p-2">
+                                                <img src="http://68.183.84.37:8000/{{i.product_image}}" width="70"
+                                                    class="img-fluid rounded shadow-sm">
+                                                <div class="ml-3 d-inline-block align-middle">
+                                                    <h5 class="mb-0"> <a
+                                                            class="text-dark d-inline-block align-middle">{{i.name}}</a>
+                                                    </h5>
+                                                    <h5 class="mb-0"><a class="editImage" (click)="get_sub_pro(i.id)"
+                                                            data-toggle="modal" data-target="#subproimage">Change
+                                                            Image</a></h5>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle">{{i.tax}}</td>
+                                        <td class="align-middle">{{i.discount}}</td>
+                                        <td class="align-middle">{{i.description}}</td>
+                                        <td class="align-middle">{{i.created_at}}</td>
+                                        <td class="align-middle">
+                                    <tr>
+                                        <td class="border-0"><img src="assets/images/icons/view.png" width="16px"
+                                                style="cursor: pointer" (click)="getMeasurePrice(i.id)">
+                                        </td>
+                                        <td class="border-0"><img src="assets/images/icons/edit.png" width="16px"
+                                                style="cursor: pointer; margin: 0px 0px 0px 14px;"
+                                                (click)="get_sub_pro(i)" data-toggle="modal" data-target="#subModel">
+                                        </td>
+                                        <td class="border-0"><img src="assets/images/icons/trash.png"
+                                                (click)="delete_subproduct(i.id)"
+                                                style="width: 16px; margin: 0px 0px 0px 20px; cursor: pointer">
+                                        </td>
+                                    </tr>
+                                    </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="text-align: center; color: rgba(85, 42, 29, 0.897)">
+                        Related Measures and Prices</h4>
+                    <div class="panel-group" id="faqAccordion">
+                        <div class="panel panel-default" *ngFor="let i of measure_price;index as j">
+                            <div (click)="priceweight(i.priceweight)"
+                                class="panel-heading accordion-toggle question-toggle collapsed user-details-heading"
+                                data-toggle="collapse" data-parent="#faqAccordion" [attr.data-target]="'#question'+j">
+                                <ul class="left list">
+                                    <li style="color: blue">Measure: <span
+                                            style="font-size: 120%; color: brown">{{i.measure}}</span></li>
+                                    <li style="color: blue">Stocks: <span
+                                            style="font-size: 120%; color: brown">{{i.stocks}}</span></li>
+                                </ul>
+
+                                <ul class="right list">
+                                    <li style="color: blue; cursor: pointer; text-align: middle;" data-toggle="modal"
+                                        data-target="#measureStock"><img src="assets/images/icons/edit.png"
+                                            width="16px"> Edit</li>
+                                    <li style="color: blue; cursor: pointer; text-align: middle;"
+                                        (click)="delete_measure_stocks(i)">
+                                        <img src="assets/images/icons/trash.png" width="16px"> Delete</li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div id="question{{j}}" class="panel-collapse collapse user-details" style="height: 0px;">
+                                <div class="panel-body">
+
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Price</th>
+                                                    <th>Offered Price</th>
+                                                    <th>Weight</th>
+                                                    <th>
+                                                        <div>Actions</div>
+                                                <tr>
+                                                    <th class="border-0">Edit</th>
+                                                    <th class="border-0">Delete</th>
+                                                </tr>
+                                                </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let pw of price_weight">
+                                                    <td>{{pw.price}}</td>
+                                                    <td>{{pw.offered_price}}</td>
+                                                    <td>{{pw.weight}}</td>
+                                                    <td>
+                                                <tr>
+                                                    <td class="border-0"><img src="assets/images/icons/edit.png"
+                                                            width="16px" style="cursor: pointer" data-toggle="modal"
+                                                            data-target="#PriceWeight">
+                                                    </td>
+                                                    <td class="border-0"><img src="assets/images/icons/trash.png"
+                                                            (click)="delete_price_weight(pw.id)" style="width: 16px; margin: 0px 0px 0px 14px; cursor: pointer">
+                                                    </td>
+                                                </tr>
+                                                </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- The Modal of editing main products-->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+            <div class="modal fade" id="mainModel">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content" *ngFor="let pro of get">
+
+                        <div class="modal-header">
+                            <h4 class="modal-title">Editing window</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <div class="modal-body">
+                            <form class="md-form" #mailForm="ngForm" novalidate>
+                                <div class=" col-xs-12">
+                                    <label class="control-label ml">Edit Name</label>
+                                    <div class="input-group place-holder">
+                                        <input type="text" [(ngModel)]="selected.name" id="name" class="form-control"
+                                            name="price" placeholder="{{pro.name}}" required>
+                                    </div>
+                                </div>
+
+                                <div class=" col-xs-12">
+                                    <label class="control-label ml">Edit Price</label>
+                                    <div class="input-group place-holder">
+                                        <input type="text" [(ngModel)]="selected.price" id="price" class="form-control"
+                                            name="name" placeholder="{{pro.price}}">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary pr" (click)="onSubmit(pro.id)"
+                                        type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal of editing main products-->
+
+<!-- The Modal of editing Image main product-->
+
+<div *ngIf="controls.modalImg" class="modal fade" id="updateimage">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content" *ngFor="let pro of get">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Editing window</h4>
+                <button (click)="controls.modalImg=false" type="button" class="close"
+                    data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form class="md-form" #mailForm="ngForm" novalidate>
+                    <div class=" col-xs-12">
+                        <label class="control-label ml">Change Image</label>
+                        <div class="input-group place-holder">
+                            <div class="p-2">
+                                <img [src]="image==undefined?'http://68.183.84.37:8000/'+pro.main_img:image" width="50"
+                                    class="img-fluid rounded shadow-sm">
+                                <div class="ml-3 d-inline-block align-middle">
+                                    <h5 class="mb-0">
+                                        <a class="text-dark d-inline-block align-middle"></a>
+                                    </h5>
+                                </div>
+                            </div>
+                            <input type="file" (change)="uploadImage('image', $event.target.files, $event)" id="upload"
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary pr" (click)="on_Change(pro.id)" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Modal of editing Image main product -->
+
+<!-- The Modal of editing sub products-->
+
+<div class="modal fade" id="subModel">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Editing window</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form class="md-form" #mailForm="ngForm" novalidate>
+                    <div class=" col-xs-12">
+                        <label class="control-label ml">Edit Name</label>
+                        <div class="input-group place-holder">
+                            <input type="text" [(ngModel)]="sub_selected.name" id="name" class="form-control"
+                                name="price" placeholder={{sub_pro?.name}} required>
+                        </div>
+                    </div>
+                    <div class=" col-xs-12">
+                        <label class="control-label ml">Edit Tax</label>
+                        <div class="input-group place-holder">
+                            <input type="text" [(ngModel)]="sub_selected.tax" id="tax" class="form-control" name="price"
+                                placeholder={{sub_pro?.tax}} required>
+                        </div>
+                    </div>
+                    <div class=" col-xs-12">
+                        <label class="control-label ml">Edit Discount</label>
+                        <div class="input-group place-holder">
+                            <input type="text" [(ngModel)]="sub_selected.discount" id="discount" class="form-control"
+                                name="price" placeholder={{sub_pro?.discount}} required>
+                        </div>
+                    </div>
+                    <div class=" col-xs-12">
+                        <label class="control-label ml">Edit Description</label>
+                        <div class="input-group place-holder">
+                            <input type="text" [(ngModel)]="sub_selected.description" id="description"
+                                class="form-control" name="price" placeholder={{sub_pro?.description}} required>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-primary pr" (click)="onSubproductedit(sub_pro.id)"
+                            type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Modal of editing sub products-->
+
+
+<!-- The Modal of editing Image sub product -->
+
+<div class="modal fade" id="subproimage">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Editing window</h4>
+                <button (click)="controls.modalImg=false" type="button" class="close"
+                    data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form class="md-form" #mailForm="ngForm" novalidate>
+                    <div class=" col-xs-12">
+                        <label class="control-label ml">Change Image</label>
+                        <div class="input-group place-holder">
+                            <div class="p-2">
+                                <img [src]="image==undefined?'http://68.183.84.37:8000/'+subimage:image" width="50"
+                                    class="img-fluid rounded shadow-sm">
+                                <div class="ml-3 d-inline-block align-middle">
+                                    <h5 class="mb-0">
+                                        <a class="text-dark d-inline-block align-middle"></a>
+                                    </h5>
+                                </div>
+                            </div>
+                            <input type="file" (change)="postSubImage('image', $event.target.files, $event)" id="upload"
+                                class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary pr" (click)="change_sub_image(subid)"
+                            type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Modal of editing Image main product -->
+
+<!-- The Modal of editing Measure and Stock-->
+
+<div class="modal fade" id="measureStock">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content" *ngFor="let i of measure_price">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Editing window</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form class="md-form" #mailForm="ngForm" novalidate>
+                    <div class=" col-xs-12">
+                        <label class="control-label ml">Edit Measure</label>
+                        <div class="input-group place-holder">
+                            <input type="text" [(ngModel)]="measurestock_selected.measure" id="name"
+                                class="form-control" name="price" placeholder="{{i.measure}}" required>
+                        </div>
+                    </div>
+
+                    <div class=" col-xs-12">
+                        <label class="control-label ml">Edit Stock</label>
+                        <div class="input-group place-holder">
+                            <input type="text" [(ngModel)]="measurestock_selected.stocks" id="price"
+                                class="form-control" name="name" placeholder="{{i.stocks}}">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary pr" (click)="update_measure_stock(i)"
+                            type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Modal of editing Measure and Stock-->
+
+
+<!-- The Modal of editing Price and Weight-->
+
+<div class="modal fade" id="PriceWeight">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content" *ngFor="let pw of price_weight">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Editing window</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form class="md-form" #mailForm="ngForm" novalidate>
+                    <div class=" col-xs-12">
+                        <label class="control-label ml">Edit Price</label>
+                        <div class="input-group place-holder">
+                            <input type="text" [(ngModel)]="selectPrice_Weight.price" id="name" class="form-control"
+                                name="price" placeholder="{{pw.price}}" required>
+                        </div>
+                    </div>
+
+                    <div class=" col-xs-12">
+                        <label class="control-label ml">Edit Weight</label>
+                        <div class="input-group place-holder">
+                            <input type="text" [(ngModel)]="selectPrice_Weight.weight" id="price" class="form-control"
+                                name="name" placeholder="{{pw.weight}}">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary pr" (click)="updatePriceWeight(pw)"
+                            type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Modal of editing Price and Weight-->

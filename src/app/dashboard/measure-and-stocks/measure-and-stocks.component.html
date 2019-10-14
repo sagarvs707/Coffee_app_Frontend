@@ -1,0 +1,53 @@
+<div class="schedule" id="shw1" *ngIf="showjobID">
+    <div class="wrapper fadeInDown mt">
+        <div id="formContent" class="">
+            <!-- Tabs Titles -->
+
+            <!-- add main product Form -->
+            <form class="md-form">
+
+                <div class="cancle-button">
+                    <span class="cnav"><button id="shw2" (click)="myjob(false)"
+                            [routerLink]="['/dashboard/adminpage']">&times;</button></span>
+                    <h4>Measure and Stock</h4>
+                </div>
+                <div style="padding: 10px;">
+                </div>
+
+                <div class=" col-xs-12">
+                    <div class="form-group">
+                        <label class="control-label ml">Select Sub product<span style="color: red">*</span></label>
+                        <select name="subproduct" class="form-control" (change)="selectSubProd($event)"
+                            [(ngModel)]="productId" id="sel1">
+                            <option [selected]="true" [disabled]="true" [value]="0">Select sub product</option>
+                            <option *ngFor="let x of names" [value]="x.id">{{x.subproduct_name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class=" col-xs-12">
+                    <label class="control-label ml">Measure<span style="color: red">*</span></label>
+                    <div class="input-group place-holder">
+                        <input type="text" [(ngModel)]="uploadgin.measure" id="measure" class="form-control"
+                            name="measure" placeholder="Main product name">
+                    </div>
+                </div>
+
+                <div class=" col-xs-12">
+                    <label class="control-label ml">Stock<span style="color: red">*</span></label>
+                    <div class="input-group place-holder">
+                        <input type="text" [(ngModel)]="uploadgin.stock" id="stock" class="form-control" name="stock"
+                            placeholder="Enter Tax">
+                    </div>
+                </div>
+
+                <div class=" col-xs-12">
+                    <button class="btn btn-primary pr" (click)="onSubmit()"
+                        style="float: left; margin: 0px 30px 12px 26px;" type="submit">Save</button>
+                    <button class="btn btn-primary pr" (click)="nextPage()"
+                        style="float: right; margin: 0px 30px 12px 26px;" type="submit">Next >></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

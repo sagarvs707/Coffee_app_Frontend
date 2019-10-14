@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from '../common.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-login',
@@ -9,8 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private cService:CommonService, private router:Router) {}
-
+  constructor(private cService:CommonService, private router:Router, private toastrService: ToastrService){}
   login={ email:'', password:'', errorMsg:'' }
   updateStatus={status:''}
   alertError:boolean=true
@@ -22,12 +23,16 @@ export class LoginComponent implements OnInit {
     .subscribe((data:any) => {
       console.log(data)
       if(data.statuscode=='200' && data.status=='success'){
-        this.router.navigate(['adminpage'])
+        this.cService.storeToken(data.token)
+        console.log(data.token)
+        this.toastrService.success("Successfully log in ");
+        this.router.navigate(['dashboard/adminpage'])
       }
-      else if(data.code=='401' && data.status=='Fail'){
+      else if(data.status=='fail'){
       this.alertError=false
-      console.log(data.message)
-      this.login.errorMsg=data.message;
+      console.log(data.error)
+      this.toastrService.error("Please provide valid Mail id and Password", "error");
+      this.login.errorMsg=data.error;
       }
     })
   }

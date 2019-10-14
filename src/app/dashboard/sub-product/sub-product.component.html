@@ -8,60 +8,60 @@
 
                 <div class="cancle-button">
                     <span class="cnav"><button id="shw2" (click)="myjob(false)"
-                            [routerLink]="['/adminpage']">&times;</button></span>
+                            [routerLink]="['/dashboard/adminpage']">&times;</button></span>
                     <h4> Sub product</h4>
                 </div>
                 <div style="padding: 10px;">
                 </div>
                 <div class=" col-xs-12">
                     <div class="form-group">
-                        <label class="control-label ml">Select main product</label>
-                        <select class="form-control" id="sel1">
-                            <option value="">Select Main product</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                        <label class="control-label ml">Select main product<span style="color: red">*</span></label>
+                        <select name="product" class="form-control" (change)="selectMainProd($event)" [(ngModel)]="productId" id="sel1">
+                            <option [selected]="true" [disabled]="true" [value]="0">Select product</option>
+                            <option *ngFor="let x of names" [value]="x.id">{{x.main_pro_name}}</option>
+
                         </select>
                     </div>
                 </div>
+
+
                 <div class=" col-xs-12">
-                    <label class="control-label ml">Name</label>
+                    <label class="control-label ml">Name<span style="color: red">*</span></label>
                     <div class="input-group place-holder">
-                        <input type="text" id="name" class="form-control" name="name" placeholder="Main product name">
+                        <input type="text" [(ngModel)]="uploadgin.name" id="name" class="form-control" name="name" placeholder="Enter Sub product name">
                     </div>
                 </div>
 
                 <div class=" col-xs-12">
-                    <label class="control-label ml">Tax</label>
+                    <label class="control-label ml">Tax<span style="color: red">*</span></label>
                     <div class="input-group place-holder">
-                        <input type="text" id="price" class="form-control" name="price" placeholder="Enter Tax">
+                        <input type="text" [(ngModel)]="uploadgin.tax" id="tax" class="form-control" name="tax" placeholder="Enter Tax">
                     </div>
                 </div>
                 <div class=" col-xs-12">
                     <label class="control-label ml">Discount</label>
                     <div class="input-group place-holder">
-                        <input type="text" id="price" class="form-control" name="price" placeholder="Enter Discount">
+                        <input type="text" [(ngModel)]="uploadgin.discount" id="discount" class="form-control" name="discount" placeholder="Enter Discount">
                     </div>
                 </div>
                 <div class=" col-xs-12">
                     <label class="control-label ml">Description</label>
                     <div class="input-group place-holder">
-                        <input type="text" id="price" class="form-control" name="price" placeholder="Enter Description">
+                        <input type="text" [(ngModel)]="uploadgin.description" id="description" class="form-control" name="description" placeholder="Enter Description">
                     </div>
                 </div>
 
                 <div class=" col-xs-12">
-                    <label class="control-label ml">Upload Image</label>
+                    <label class="control-label ml">Upload Image<span style="color: red">*</span></label>
                     <div class="input-group place-holder">
-                        <input type="file" id="name" class="form-control" name="name">
+                        <input type="file" (change)="uploadImage('image', $event.target.files)" id="upload" class="form-control" name="name">
                     </div>
                 </div>
 
                 <div class=" col-xs-12">
-                    <!-- <a input class="btn btn-primary ml" type="submit" value="Ok" class=""> -->
-                    <button class="btn btn-primary pr" [routerLink]="['/measure_stock']" type="submit">Next</button>
-                </div>
+                    <button class="btn btn-primary pr" (click)="onSubmit()"  style="float: left; margin: 0px 30px 12px 26px;" type="submit">Save</button>                    
+                    <button class="btn btn-primary pr" (click)="nextPage()" style="float: right; margin: 2px 30px 12px 26px;" type="submit">Next >></button>
+                </div>     
             </form>
         </div>
     </div>

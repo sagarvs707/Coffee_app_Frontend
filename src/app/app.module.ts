@@ -5,13 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HttpClientModule,  HttpHeaders } from '@angular/common/http';
-import { from } from 'rxjs';
 import { AdminpageComponent } from './dashboard/adminpage/adminpage.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SubProductComponent } from './dashboard/sub-product/sub-product.component';
 import { PriceWeightComponent } from './dashboard/price-weight/price-weight.component';
-import { AddMeasureStockComponent } from './dashboard/add-measure-stock/add-measure-stock.component';
 import { MainProductComponent } from './dashboard/main-product/main-product.component';
+import { MeasureAndStocksComponent } from './dashboard/measure-and-stocks/measure-and-stocks.component';
+import { ProductTableComponent } from './dashboard/product-table/product-table.component';
+import { AccessOrderedProductsComponent } from './dashboard/access-ordered-products/access-ordered-products.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -21,14 +24,24 @@ import { MainProductComponent } from './dashboard/main-product/main-product.comp
     AdminpageComponent,
     SubProductComponent,
     PriceWeightComponent,
-    AddMeasureStockComponent,
-    MainProductComponent
+    MainProductComponent,
+    MeasureAndStocksComponent,
+    ProductTableComponent,
+    AccessOrderedProductsComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      timeOut: 4000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+    }) // ToastrModule added
+
   ],
   providers: [],
   bootstrap: [AppComponent]

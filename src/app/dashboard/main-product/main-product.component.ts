@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/common.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-main-product',
@@ -9,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class MainProductComponent implements OnInit {
 
-  constructor(private cService:CommonService, private router:Router) { }
+  constructor(private cService:CommonService, private router:Router, private toastrService: ToastrService) { }
   uploadgin={ name:'', price:'', main_category:'', errorMsg:'' }
 
   image:any;
@@ -30,25 +32,25 @@ export class MainProductComponent implements OnInit {
   uploadImage(w, e){
     this.imageName = w
     this.image = e[0]
-    console.log(this.imageName)
     console.log(this.image)
-    // this.uploadgin.main_category = e
   }
   onSubmit(){
     let fd = new FormData();
     fd.set('name',this.uploadgin.name);
     fd.set('price',this.uploadgin.price);
     fd.set('main_category',this.image);
+    
     this.cService.sendMainProduct(fd).subscribe((data:any) => {
       console.log(data.statuscode, data.status)
       if(data.statuscode=='200' && data.status=='success'){
         this.uploadgin.errorMsg=data.message;
-        alert(data.message)
+        this.toastrService.success(this.uploadgin.errorMsg, "Success");
+        this.uploadgin={ name:'', price:'', main_category:'', errorMsg:'' }
       }
       else if(data.statuscode=='404' && data.status=='error'){
       console.log(data.message)
       this.uploadgin.errorMsg=data.message;
-      alert(data.message)
+      this.toastrService.success(this.uploadgin.errorMsg, "Fail");
       }
     })
   }

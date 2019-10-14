@@ -1,175 +1,188 @@
-    <div class="content-wrap">
-        <div class="main">
-            <div class="container-fluid">
+<div class="content-wrap">
+    <div class="main">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 p-r-0 title-margin-right">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h1>Hello, <span>Welcome Here</span></h1>
+                        </div>
+                    </div>
+                </div>
+                <!-- /# column -->
+            </div>
+            <!-- /# row -->
+            <section id="main-content">
                 <div class="row">
-                    <div class="col-lg-8 p-r-0 title-margin-right">
-                        <div class="page-header">
-                            <div class="page-title">
-                                <h1>Hello, <span>Welcome Here</span></h1>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="stat-widget-two">
+                                <div class="stat-content">
+                                    <div class="stat-text">Remaining Stocks </div>
+                                    <div class="stat-digit">{{allcount?.all_count}}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                   <!-- /# column -->
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="stat-widget-two">
+                                <div class="stat-content">
+                                    <div class="stat-text">Pending Orders</div>
+                                    <div class="stat-digit">{{pOrder?.all_count}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="stat-widget-two">
+                                <div class="stat-content">
+                                    <div class="stat-text">Total Users</div>
+                                    <div class="stat-digit">{{tusers?.all_count}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /# column -->
                 </div>
                 <!-- /# row -->
-                <section id="main-content">
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <div class="card">
-                                <div class="stat-widget-two">
-                                    <div class="stat-content">
-                                        <div class="stat-text">Remaining Stocks </div>
-                                        <div class="stat-digit">{{allcount.all_count}}</div>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-success w-85" role="progressbar"
-                                            aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="card">
-                                <div class="stat-widget-two">
-                                    <div class="stat-content">
-                                        <div class="stat-text">Pending Orders</div>
-                                        <div class="stat-digit">{{pOrder.all_count}}</div>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-primary w-75" role="progressbar"
-                                            aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="card">
-                                <div class="stat-widget-two">
-                                    <div class="stat-content">
-                                        <div class="stat-text">Total Users</div>
-                                        <div class="stat-digit">{{tusers.all_count}}</div>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-warning w-50" role="progressbar"
-                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="card">
-                                <div class="stat-widget-two">
-                                    <div class="stat-content">
-                                        <div class="stat-text">Total Products</div>
-                                        <div class="stat-digit">650</div>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-danger w-65" role="progressbar"
-                                            aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /# card -->
-                        </div>
-                        <!-- /# column -->
-                    </div>
-                    <!-- /# row -->
-    
-    
-                    <div class="row">
-                        <!-- column -->
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Orders Overview</h4>
-                                    <form action="">
-                                    <div class="panel-group" id="faqAccordion">
-                                        <div class="panel panel-default"  *ngFor="let user of sortData;index as i">
-                                            <div class="panel-heading accordion-toggle question-toggle collapsed user-details-heading"
-                                                data-toggle="collapse" data-parent="#faqAccordion" [attr.data-target]="'#question'+i">
-                                                <ul class="left list">
-                                                    <li>{{user.full_name}}</li>
-                                                    <li>{{user.email}}</li>
-                                                    <li>Mobile : {{user.phone_number}}</li>
-                                                </ul>
-                                                <ul class="right list">
-                                                    <li><a href="#" class="black"><b>Ordered date : </b> <div>{{user.ordered_date}}</div></a></li>
-                                                </ul>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                                <div id="question{{i}}" class="panel-collapse collapse user-details"
-                                                    style="height: 0px;">
-                                                    <div class="panel-body">
-    
-                                                        <div class="table-responsive">
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Product Name</th>
-                                                                        <th>Delivery Name</th>
-                                                                        <th>Delivery phone number</th>
-                                                                        <th>Delivery address</th>
-                                                                        <th>Measure</th>
-                                                                        <th>Price</th>
-                                                                        <th>Weight</th>
-                                                                        <th>Quantity</th>
-                                                                        <th>Stocks</th>
-                                                                        <th>Permission</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                     <tr *ngFor="let i of user.orders;let h=index">
-                                                                        <td>{{i.products.name}}</td>
-                                                                        <td>{{i.delivery_name}}</td>
-                                                                        <td>{{i.delivery_phone_number}}</td>
-                                                                        <td>{{i.delivery_address}}</td>
-                                                                        <td>{{i.products.measure}}</td>
-                                                                        <td>{{i.products.price}}</td>
-                                                                        <td>{{i.products.weight}}</td>
-                                                                        <td>{{i.quantity}}</td>
-                                                                        <td>{{i.products.stocks}}</td>
-                                                                        <td style="font-family: auto;">
-                                                                            <div class="btn-group" id="status" data-toggle="buttons">
-                                                                                <label class="btn btn-warning  btn-xs" data-toggle="modal" data-target="#myModal">
-                                                                                    <button (click)="permission(i.product_id,'Accept')"
-                                                                                        name="Accept"
-                                                                                        >Accept</button></label>
-                                                                                <label class="btn btn-warning btn-xs" data-toggle="modal" data-target="#myModal">
-                                                                                    <button (click)="permission(i.product_id,'Reject')"
-                                                                                        name="Reject"
-                                                                                        >Reject</button></label>
-                                                                            </div>
-                                                                        </td>                                                                          
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                            <div class="form-group text-right">
-                                                                <span>                                                              
-                                                                    <button type="button" class="btn btn-success btn-2"  style="background-color:blue">Grand Total :{{user.total}}/-</button>  
-                                                                    <button type="submit" class="btn btn-success btn-2" (click)="updated()">Submit</button>
-                                                                </span>
-                                                        </div>
-                                                        </div>   
-                                                    </div>
-                                                </div>
-                                        </div>
-                                    </div>
-                                    </form>        
-                                </div>
-                                    <!--/panel-group-->                      
-                            </div>
-                                <!--/panel-group-->
+            </section>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+            <div class="card">
+                <div class="card-body ">
+                    <h4 class="card-title" style="text-align: center; color: rgba(85, 42, 29, 0.897)">
+                        User Details</h4>
+                    <div class="panel-body">
+                        <div class="table-responsive scroll-box">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>User name </th>
+                                        <th>Email ID</th>
+                                        <th>Phone number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let user of data" (click)="products(user.cost)" style="cursor: pointer">
+                                        <td><span><img [src]="user.status==false?'assets/images/icons/reddot.jpg':'assets/images/icons/whitedot.jpg'" style="width: 10px; margin-right: 2px;"></span>
+                                            {{user.full_name}}</td>
+                                        <td>{{user.email}}</td>
+                                        <td>{{user.phone_number}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-    
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="footer">
-                                <p>2018 © Admin Board. - <a href="#">example.com</a></p>
-                            </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="text-align: center; color: rgba(85, 42, 29, 0.897)">
+                        Order Details</h4>
+                    <div class="panel-body">
+                        <div class="table-responsive scroll-box">
+                            <h1 *ngIf="deliveryDisplay" style="text-align: center; color: #cccc; margin-top: 8%">
+                                Please Select Any User</h1>
+                            <table *ngIf="!deliveryDisplay" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>Delivery Name</th>
+                                        <th>Delivery Phone number</th>
+                                        <th>Delivery address</th>
+                                        <th>Total Amount</th>
+                                        <th>Ordered date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="cursor: pointer" *ngFor="let p of productsDetails.details"
+                                        (click)="permit_product(p.products)">
+
+                                        <td><img [src]="p.status==false?'assets/images/icons/nocart.png':'assets/images/icons/yescart.png'" style="width: 31px;"></td>
+                                        <td>{{p.delivery_name}}</td>
+                                        <td>{{p.delivery_phone_number}}</td>
+                                        <td>{{p.delivery_address}}</td>
+                                        <td>{{p.total}}</td>
+                                        <td>{{p.ordered_data}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
         </div>
     </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title" style="text-align: center; color: rgba(85, 42, 29, 0.897)">
+                        Product Details</h4>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="txt_left">
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Measure</th>
+                                        <th>Price</th>
+                                        <th>Weight</th>
+                                        <th>Quantity</th>
+                                        <th>Remaining stocks</th>
+                                        <th>Status</th>
+                                        <th>Permission</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="background-color:#dddcc7cb">
+                                    <tr *ngFor="let details of x">
+                                        <td>{{details.price_wight.name}}</td>
+                                        <td>{{details.price_wight.measure}}</td>
+                                        <td>{{details.price_wight.price}}</td>
+                                        <td>{{details.price_wight.weight}}</td>
+                                        <td>{{details.quantity}}</td>
+                                        <td>{{details.price_wight.stocks}}</td>
+                                        <td>{{details.status}}</td>
+                                        <td style="font-family: auto;">
+                                            <div class="btn-group" id="status" data-toggle="buttons">
+                                                <label [ngClass]="{'is-active': details.status=='Accept'}"
+                                                    class="btn btn-light btn-rounded btn-sm m-0" data-toggle="modal"
+                                                    data-target="#myModal">
+                                                    <button (click)="permission(details.product_id,'Accept')"
+                                                        name="Accept">Accept</button></label>
+                                                <label [ngClass]="{'is-active': details.status=='Reject'}"
+                                                    class="btn btn-light btn-rounded btn-sm m-0" data-toggle="modal"
+                                                    data-target="#myModal">
+                                                    <button (click)="permission(details.product_id,'Reject')"
+                                                        name="Reject">Reject</button></label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="form-group text-right">
+                                <span>
+                                    <button type="submit" class="btn btn-success btn-2"
+                                        (click)="updated()">Submit</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
