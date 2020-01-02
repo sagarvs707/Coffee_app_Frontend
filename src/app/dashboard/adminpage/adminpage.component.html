@@ -71,8 +71,8 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let user of data" (click)="products(user.cost)" style="cursor: pointer">
-                                        <td><span><img [src]="user.status==false?'assets/images/icons/reddot.jpg':'assets/images/icons/whitedot.jpg'" style="width: 10px; margin-right: 2px;"></span>
-                                            {{user.full_name}}</td>
+                                        <td><span><img [src]="user.status==false?'assets/images/icons/reddot.jpg':'assets/images/icons/whitedot.jpg'" style="width: 10px; margin-right: 2px;"></span> {{user.full_name}}
+                                        </td>
                                         <td>{{user.email}}</td>
                                         <td>{{user.phone_number}}</td>
                                     </tr>
@@ -104,16 +104,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr style="cursor: pointer" *ngFor="let p of productsDetails.details"
-                                        (click)="permit_product(p.products)">
-
+                                    <tr style="cursor: pointer" *ngFor="let p of productsDetails.details" (click)="permit_product(p.products)">
                                         <td><img [src]="p.status==false?'assets/images/icons/nocart.png':'assets/images/icons/yescart.png'" style="width: 31px;"></td>
                                         <td>{{p.delivery_name}}</td>
                                         <td>{{p.delivery_phone_number}}</td>
                                         <td>{{p.delivery_address}}</td>
                                         <td>{{p.total}}</td>
                                         <td>{{p.ordered_data}}</td>
-
                                     </tr>
                                 </tbody>
                             </table>
@@ -158,14 +155,12 @@
                                         <td>{{details.status}}</td>
                                         <td style="font-family: auto;">
                                             <div class="btn-group" id="status" data-toggle="buttons">
-                                                <label [ngClass]="{'is-active': details.status=='Accept'}"
-                                                    class="btn btn-light btn-rounded btn-sm m-0" data-toggle="modal"
-                                                    data-target="#myModal">
+
+                                                <label [ngClass]="{'is-active': details.status=='Accept'}" class="btn btn-light btn-rounded btn-sm m-0" data-toggle="modal" data-target="#myModal">
                                                     <button (click)="permission(details.product_id,'Accept')"
                                                         name="Accept">Accept</button></label>
-                                                <label [ngClass]="{'is-active': details.status=='Reject'}"
-                                                    class="btn btn-light btn-rounded btn-sm m-0" data-toggle="modal"
-                                                    data-target="#myModal">
+
+                                                <label [ngClass]="{'is-active': details.status=='Reject'}" class="btn btn-light btn-rounded btn-sm m-0" data-toggle="modal" data-target="#myModal">
                                                     <button (click)="permission(details.product_id,'Reject')"
                                                         name="Reject">Reject</button></label>
                                             </div>

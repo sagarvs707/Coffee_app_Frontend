@@ -37,9 +37,13 @@ export class CommonService {
       edit_main_product: 'product/main_product_access/', // get single main product by id and edit delet
       editsubproduct: 'product/sub_product_access/',  //edit delete and get sub products
       getMeasuresPrices: 'product/measure_price_get/', //get Measure and price list by sub product id
+      getSingle_measure: 'product/get_single_measure/',
+      getSingle_price: 'product/fetch_single_price/',
       update_measure_stock: 'product/update_measurestock/',   //edit and delete measure and stock
       edit_price_weight: 'product/edit_price_weight/',    //edit and delete price and weight
-      delete_price_weight: 'product/delete_price_weight/'
+      delete_price_weight: 'product/delete_price_weight/',
+
+      aceessSubImages: 'product/access_sub_images/', //edit or delete the subproduct Images
     }
   }
   private _current_user = new BehaviorSubject<any>(0);
@@ -149,6 +153,21 @@ export class CommonService {
     return this.http.delete(this.configurations.baseURL + this.configurations.apiList.delete_price_weight + id + '/', this.configurations.httpOptions)
   }
 
+  edit_subImages(data, id){
+    return this.http.put(this.configurations.baseURL + this.configurations.apiList.aceessSubImages + id + '/', data)
+  }
+
+  get_single_measure(id){
+    return this.http.get(this.configurations.baseURL + this.configurations.apiList.getSingle_measure + id + '/', this.configurations.httpOptions)
+  }
+
+  get_single_price(id){
+    return this.http.get(this.configurations.baseURL + this.configurations.apiList.getSingle_price + id + '/', this.configurations.httpOptions)
+  }
+
+
+  
+
   resolveToken(token) {
     if (token == "0") token = this.getToken();
     token = token == 0 ? null : token;
@@ -157,9 +176,7 @@ export class CommonService {
       return;
     } else {
       var user = this.getDecodedAccessToken(token);
-      console.log(user);
       this.userid = user.id
-      console.log(this.userid)
       this.changeCurrentUser(user);
     }
   }
@@ -167,7 +184,6 @@ export class CommonService {
     if (data == 0) {
       localStorage.setItem("token", "0");
     } else {
-      console.log(this.current_user)
       this._current_user.next(data);
     }
   }

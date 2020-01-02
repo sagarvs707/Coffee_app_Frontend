@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class MeasureAndStocksComponent implements OnInit {
   constructor(private cService: CommonService, private router: Router, private toastrService: ToastrService) { }
-  uploadgin = { measure: '', stock: '', errorMsg: '' }
+  uploadgin = { measure: '', stock: '', measure_description: '', errorMsg: '' }
 
   showjobID = true;
   names;
@@ -41,7 +41,7 @@ export class MeasureAndStocksComponent implements OnInit {
     fd.set('sub_product_id', this.productId);
     fd.set('measure', this.uploadgin.measure);
     fd.set('stocks', this.uploadgin.stock);
-
+    fd.set('measure_description', this.uploadgin.measure_description);
     if (this.productId != 0) {
       if (this.uploadgin.measure == null || this.uploadgin.measure != ""){
         if (this.uploadgin.stock == null || this.uploadgin.stock != ""){
@@ -52,7 +52,7 @@ export class MeasureAndStocksComponent implements OnInit {
             if (data.statuscode == '200' && data.status == 'success') {
               this.success = "Measure and Stocks added successfully";
               this.toastrService.success(this.success);
-              this.uploadgin = { measure: '', stock: '', errorMsg: '' }
+              this.uploadgin = { measure: '', stock: '', measure_description: '', errorMsg: '' }
             }
             else if (data.statuscode == '404' && data.status == 'error') {
               console.log(data.message)

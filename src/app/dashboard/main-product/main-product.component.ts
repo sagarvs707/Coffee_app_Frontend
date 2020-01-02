@@ -32,7 +32,6 @@ export class MainProductComponent implements OnInit {
   uploadImage(w, e){
     this.imageName = w
     this.image = e[0]
-    console.log(this.image)
   }
   onSubmit(){
     let fd = new FormData();
@@ -41,14 +40,12 @@ export class MainProductComponent implements OnInit {
     fd.set('main_category',this.image);
     
     this.cService.sendMainProduct(fd).subscribe((data:any) => {
-      console.log(data.statuscode, data.status)
       if(data.statuscode=='200' && data.status=='success'){
         this.uploadgin.errorMsg=data.message;
         this.toastrService.success(this.uploadgin.errorMsg, "Success");
         this.uploadgin={ name:'', price:'', main_category:'', errorMsg:'' }
       }
       else if(data.statuscode=='404' && data.status=='error'){
-      console.log(data.message)
       this.uploadgin.errorMsg=data.message;
       this.toastrService.success(this.uploadgin.errorMsg, "Fail");
       }

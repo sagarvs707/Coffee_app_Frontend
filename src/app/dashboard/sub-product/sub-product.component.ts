@@ -14,8 +14,9 @@ export class SubProductComponent implements OnInit {
   constructor(private cService: CommonService, private router: Router, private toastrService: ToastrService) { }
   uploadgin = { product: '', name: '', tax: '', discount: '', description: '', errorMsg: '' }
 
-  image: any;
-  imageName: any;
+  imageOne: any;
+  imageTwo: any;
+  imageThree: any;
   showjobID = true;
   names;
   productId: any = 0;
@@ -29,9 +30,14 @@ export class SubProductComponent implements OnInit {
     this.showjobID = d;
   }
 
-  uploadImage(w, e) {
-    this.imageName = w;
-    this.image = e[0];
+  uploadImageOne(e) {
+    this.imageOne = e[0];
+  }
+  uploadImageTwo(e) {
+    this.imageTwo = e[0];
+  }
+  uploadImageThree(e) {
+    this.imageThree = e[0];
   }
 
   allMainProName() {
@@ -52,11 +58,13 @@ export class SubProductComponent implements OnInit {
     fd.set('tax', this.uploadgin.tax);
     fd.set('discount', this.uploadgin.discount);
     fd.set('description', this.uploadgin.description);
-    fd.set('product_image', this.image);
+    fd.set('product_imageOne', this.imageOne);
+    fd.set('product_imageTwo', this.imageTwo);
+    fd.set('product_imageThree', this.imageThree);
     if (this.productId != 0) {
       if (this.uploadgin.name == null || this.uploadgin.name != "") {
         if (this.uploadgin.tax == null || this.uploadgin.tax != "") {
-          if (this.image == null || this.image != "") {
+          if (this.imageOne == null || this.imageOne != "") {
 
             this.cService.sendsubProduct(fd).subscribe((data: any) => {
               if (data.statuscode == '200' && data.status == 'success') {

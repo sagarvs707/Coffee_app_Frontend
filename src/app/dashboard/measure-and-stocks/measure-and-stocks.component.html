@@ -17,8 +17,7 @@
                 <div class=" col-xs-12">
                     <div class="form-group">
                         <label class="control-label ml">Select Sub product<span style="color: red">*</span></label>
-                        <select name="subproduct" class="form-control" (change)="selectSubProd($event)"
-                            [(ngModel)]="productId" id="sel1">
+                        <select name="subproduct" class="form-control" (change)="selectSubProd($event)" [(ngModel)]="productId" id="sel1">
                             <option [selected]="true" [disabled]="true" [value]="0">Select sub product</option>
                             <option *ngFor="let x of names" [value]="x.id">{{x.subproduct_name}}</option>
                         </select>
@@ -28,24 +27,26 @@
                 <div class=" col-xs-12">
                     <label class="control-label ml">Measure<span style="color: red">*</span></label>
                     <div class="input-group place-holder">
-                        <input type="text" [(ngModel)]="uploadgin.measure" id="measure" class="form-control"
-                            name="measure" placeholder="Main product name">
+                        <input type="text" [(ngModel)]="uploadgin.measure" id="measure" class="form-control" name="measure" placeholder="Main product name">
                     </div>
                 </div>
 
                 <div class=" col-xs-12">
                     <label class="control-label ml">Stock<span style="color: red">*</span></label>
                     <div class="input-group place-holder">
-                        <input type="text" [(ngModel)]="uploadgin.stock" id="stock" class="form-control" name="stock"
-                            placeholder="Enter Tax">
+                        <input type="text" [(ngModel)]="uploadgin.stock" id="stock" class="form-control" name="stock" placeholder="Enter Tax">
+                    </div>
+                </div>
+                <div class=" col-xs-12">
+                    <label class="control-label ml">Measure Description</label>
+                    <div class="input-group place-holder">
+                        <input type="text" [(ngModel)]="uploadgin.measure_description" id="measure_description" class="form-control" name="measure_description" placeholder="Main product name">
                     </div>
                 </div>
 
                 <div class=" col-xs-12">
-                    <button class="btn btn-primary pr" (click)="onSubmit()"
-                        style="float: left; margin: 0px 30px 12px 26px;" type="submit">Save</button>
-                    <button class="btn btn-primary pr" (click)="nextPage()"
-                        style="float: right; margin: 0px 30px 12px 26px;" type="submit">Next >></button>
+                    <button class="btn btn-primary pr" (click)="onSubmit()" style="float: left; margin: 0px 30px 12px 26px;" type="submit">Save</button>
+                    <button class="btn btn-primary pr" (click)="nextPage()" style="float: right; margin: 0px 30px 12px 26px;" type="submit">Next >></button>
                 </div>
             </form>
         </div>

@@ -23,47 +23,38 @@
                                         </th>
                                         <th scope="col" class="border-0 align-middle bg-light">
                                             <div class="py-2 text-uppercase align-middle">Action</div>
-                                    <tr>
-                                        <th class="border-0 bg-light"> View</th>
-                                        <th class="border-0 bg-light"> Edit</th>
-                                        <th class="border-0 bg-light"> Delete</th>
-                                    </tr>
-                                    </th>
+                                            <tr>
+                                                <th class="border-0 bg-light"> View</th>
+                                                <th class="border-0 bg-light"> Edit</th>
+                                                <th class="border-0 bg-light"> Delete</th>
+                                            </tr>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let pro of data" class="removetopline">
                                         <th scope="row" class="border-0">
                                             <div class="p-2">
-                                                <img src="http://68.183.84.37:8000/{{pro.main_img}}" width="70"
-                                                    class="img-fluid rounded shadow-sm">
+                                                <img src="http://68.183.84.37:8000/{{pro.main_img}}" width="70" class="img-fluid rounded shadow-sm">
                                                 <div class="ml-3 d-inline-block align-middle">
-                                                    <h5 class="mb-0"> <a
-                                                            class="text-dark d-inline-block align-middle">{{pro.name}}</a>
+                                                    <h5 class="mb-0"> <a class="text-dark d-inline-block align-middle">{{pro.name}}</a>
                                                     </h5>
-                                                    <h5 class="mb-0"><a class="editImage"
-                                                            (click)="get_single_main_pro(pro.id)" data-toggle="modal"
-                                                            data-target="#updateimage">Change
+                                                    <h5 class="mb-0"><a class="editImage" (click)="get_single_main_pro(pro.id)" data-toggle="modal" data-target="#updateimage">Change
                                                             Image</a></h5>
                                                 </div>
                                             </div>
                                         </th>
                                         <td class="border-0 align-middle"><strong>Rs {{pro.price}}</strong></td>
                                         <td class="align-middle">
-                                    <tr>
-                                        <td style="cursor: pointer" (click)="products(pro.subPro)"><img
-                                                src="assets/images/icons/view.png" width="16px" style="cursor: pointer">
+                                            <tr>
+                                                <td style="cursor: pointer" (click)="products(pro.subPro)"><img src="assets/images/icons/view.png" width="16px" style="cursor: pointer">
+                                                </td>
+
+                                                <td style="cursor: pointer"><img src="assets/images/icons/edit.png" width="16px" style="margin: 0px 0px 0px 20px" (click)="get_single_main_pro(pro.id)" data-toggle="modal" data-target="#mainModel"></td>
+
+                                                <td style="cursor: pointer"><img src="assets/images/icons/trash.png" width="16px" style="margin: 0px 0px 0px 20px" (click)="on_delete(pro.id)"></td>
+                                            </tr>
                                         </td>
-
-                                        <td style="cursor: pointer"><img src="assets/images/icons/edit.png" width="16px"
-                                                style="margin: 0px 0px 0px 20px" (click)="get_single_main_pro(pro.id)"
-                                                data-toggle="modal" data-target="#mainModel"></td>
-
-                                        <td style="cursor: pointer"><img src="assets/images/icons/trash.png"
-                                                width="16px" style="margin: 0px 0px 0px 20px"
-                                                (click)="on_delete(pro.id)"></td>
-                                    </tr>
-                                    </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -91,27 +82,24 @@
                                         <th>Product added date</th>
                                         <th>
                                             <div>Action</div>
-                                    <tr>
-                                        <th class="border-0"> View</th>
-                                        <th class="border-0"> Edit</th>
-                                        <th class="border-0"> Delete</th>
-                                    </tr>
-                                    </th>
+                                            <tr>
+                                                <th class="border-0"> View</th>
+                                                <th class="border-0"> Edit</th>
+                                                <th class="border-0"> Delete</th>
+                                            </tr>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody style="background-color:#dddcc7cb">
                                     <tr *ngFor="let i of subdata">
                                         <td>
                                             <div class="p-2">
-                                                <img src="http://68.183.84.37:8000/{{i.product_image}}" width="70"
-                                                    class="img-fluid rounded shadow-sm">
+                                                <img src="http://68.183.84.37:8000/{{i.images.product_imageOne}}" width="70" class="img-fluid rounded shadow-sm">
                                                 <div class="ml-3 d-inline-block align-middle">
-                                                    <h5 class="mb-0"> <a
-                                                            class="text-dark d-inline-block align-middle">{{i.name}}</a>
+                                                    <h5 class="mb-0"> <a class="text-dark d-inline-block align-middle">{{i.name}}</a>
                                                     </h5>
-                                                    <h5 class="mb-0"><a class="editImage" (click)="get_sub_pro(i.id)"
-                                                            data-toggle="modal" data-target="#subproimage">Change
-                                                            Image</a></h5>
+                                                    <h5 class="mb-0"><a class="editImage" (click)="get_sub_product(i.id)" data-toggle="modal" data-target="#subproimage">Change
+                                                        Image</a></h5>
 
                                                 </div>
                                             </div>
@@ -121,20 +109,15 @@
                                         <td class="align-middle">{{i.description}}</td>
                                         <td class="align-middle">{{i.created_at}}</td>
                                         <td class="align-middle">
-                                    <tr>
-                                        <td class="border-0"><img src="assets/images/icons/view.png" width="16px"
-                                                style="cursor: pointer" (click)="getMeasurePrice(i.id)">
+                                            <tr>
+                                                <td class="border-0"><img src="assets/images/icons/view.png" width="16px" style="cursor: pointer" (click)="getMeasurePrice(i.id)">
+                                                </td>
+                                                <td class="border-0"><img src="assets/images/icons/edit.png" width="16px" style="cursor: pointer; margin: 0px 0px 0px 14px;" (click)="get_sub_pro(i)" data-toggle="modal" data-target="#subModel">
+                                                </td>
+                                                <td class="border-0"><img src="assets/images/icons/trash.png" (click)="delete_subproduct(i.id)" style="width: 16px; margin: 0px 0px 0px 20px; cursor: pointer">
+                                                </td>
+                                            </tr>
                                         </td>
-                                        <td class="border-0"><img src="assets/images/icons/edit.png" width="16px"
-                                                style="cursor: pointer; margin: 0px 0px 0px 14px;"
-                                                (click)="get_sub_pro(i)" data-toggle="modal" data-target="#subModel">
-                                        </td>
-                                        <td class="border-0"><img src="assets/images/icons/trash.png"
-                                                (click)="delete_subproduct(i.id)"
-                                                style="width: 16px; margin: 0px 0px 0px 20px; cursor: pointer">
-                                        </td>
-                                    </tr>
-                                    </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -156,22 +139,16 @@
                         Related Measures and Prices</h4>
                     <div class="panel-group" id="faqAccordion">
                         <div class="panel panel-default" *ngFor="let i of measure_price;index as j">
-                            <div (click)="priceweight(i.priceweight)"
-                                class="panel-heading accordion-toggle question-toggle collapsed user-details-heading"
-                                data-toggle="collapse" data-parent="#faqAccordion" [attr.data-target]="'#question'+j">
+                            <div (click)="priceweight(i.priceweight)" class="panel-heading accordion-toggle question-toggle collapsed user-details-heading" data-toggle="collapse" data-parent="#faqAccordion" [attr.data-target]="'#question'+j">
                                 <ul class="left list">
-                                    <li style="color: blue">Measure: <span
-                                            style="font-size: 120%; color: brown">{{i.measure}}</span></li>
-                                    <li style="color: blue">Stocks: <span
-                                            style="font-size: 120%; color: brown">{{i.stocks}}</span></li>
+                                    <li style="color: blue">Measure: <span style="font-size: 120%; color: brown">{{i.measure}}</span></li>
+                                    <li style="color: blue">Stocks: <span style="font-size: 120%; color: brown">{{i.stocks}}</span></li>
+                                    <li style="color: blue">Measure Description: <span style="font-size: 120%; color: brown">{{i.measure_description}}</span></li>
                                 </ul>
 
                                 <ul class="right list">
-                                    <li style="color: blue; cursor: pointer; text-align: middle;" data-toggle="modal"
-                                        data-target="#measureStock"><img src="assets/images/icons/edit.png"
-                                            width="16px"> Edit</li>
-                                    <li style="color: blue; cursor: pointer; text-align: middle;"
-                                        (click)="delete_measure_stocks(i)">
+                                    <li style="color: blue; cursor: pointer; text-align: middle;" (click)="single_measure(i.id)" data-toggle="modal" data-target="#measureStock"><img src="assets/images/icons/edit.png" width="16px"> Edit</li>
+                                    <li style="color: blue; cursor: pointer; text-align: middle;" (click)="delete_measure_stocks(i)">
                                         <img src="assets/images/icons/trash.png" width="16px"> Delete</li>
                                 </ul>
                                 <div class="clearfix"></div>
@@ -183,34 +160,35 @@
                                         <table class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>Price</th>
+                                                    <th>Buying Price</th>
+                                                    <th>Buying date</th>
+                                                    <th>Selling Price</th>
                                                     <th>Offered Price</th>
                                                     <th>Weight</th>
                                                     <th>
                                                         <div>Actions</div>
-                                                <tr>
-                                                    <th class="border-0">Edit</th>
-                                                    <th class="border-0">Delete</th>
-                                                </tr>
-                                                </th>
+                                                        <tr>
+                                                            <th class="border-0">Edit</th>
+                                                            <th class="border-0">Delete</th>
+                                                        </tr>
+                                                    </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr *ngFor="let pw of price_weight">
+                                                    <td>{{pw.buying_price}}</td>
+                                                    <td>{{pw.buying_date}}</td>
                                                     <td>{{pw.price}}</td>
                                                     <td>{{pw.offered_price}}</td>
                                                     <td>{{pw.weight}}</td>
                                                     <td>
-                                                <tr>
-                                                    <td class="border-0"><img src="assets/images/icons/edit.png"
-                                                            width="16px" style="cursor: pointer" data-toggle="modal"
-                                                            data-target="#PriceWeight">
+                                                        <tr>
+                                                            <td class="border-0" (click)="fetch_single_price(pw.id)"><img src="assets/images/icons/edit.png" width="16px" style="cursor: pointer" data-toggle="modal" data-target="#PriceWeight">
+                                                            </td>
+                                                            <td class="border-0"><img src="assets/images/icons/trash.png" (click)="delete_price_weight(pw.id)" style="width: 16px; margin: 0px 0px 0px 14px; cursor: pointer">
+                                                            </td>
+                                                        </tr>
                                                     </td>
-                                                    <td class="border-0"><img src="assets/images/icons/trash.png"
-                                                            (click)="delete_price_weight(pw.id)" style="width: 16px; margin: 0px 0px 0px 14px; cursor: pointer">
-                                                    </td>
-                                                </tr>
-                                                </td>
 
                                                 </tr>
                                             </tbody>
@@ -245,21 +223,18 @@
                                 <div class=" col-xs-12">
                                     <label class="control-label ml">Edit Name</label>
                                     <div class="input-group place-holder">
-                                        <input type="text" [(ngModel)]="selected.name" id="name" class="form-control"
-                                            name="price" placeholder="{{pro.name}}" required>
+                                        <input type="text" [(ngModel)]="selected.name" id="name" class="form-control" name="price" placeholder="{{pro.name}}" required>
                                     </div>
                                 </div>
 
                                 <div class=" col-xs-12">
                                     <label class="control-label ml">Edit Price</label>
                                     <div class="input-group place-holder">
-                                        <input type="text" [(ngModel)]="selected.price" id="price" class="form-control"
-                                            name="name" placeholder="{{pro.price}}">
+                                        <input type="text" [(ngModel)]="selected.price" id="price" class="form-control" name="name" placeholder="{{pro.price}}">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button class="btn btn-primary pr" (click)="onSubmit(pro.id)"
-                                        type="submit">Submit</button>
+                                    <button class="btn btn-primary pr" (click)="onSubmit(pro.id)" type="submit">Submit</button>
                                 </div>
                             </form>
                         </div>
@@ -279,8 +254,7 @@
 
             <div class="modal-header">
                 <h4 class="modal-title">Editing window</h4>
-                <button (click)="controls.modalImg=false" type="button" class="close"
-                    data-dismiss="modal">&times;</button>
+                <button (click)="controls.modalImg=false" type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <div class="modal-body">
@@ -289,16 +263,14 @@
                         <label class="control-label ml">Change Image</label>
                         <div class="input-group place-holder">
                             <div class="p-2">
-                                <img [src]="image==undefined?'http://68.183.84.37:8000/'+pro.main_img:image" width="50"
-                                    class="img-fluid rounded shadow-sm">
+                                <img [src]="image==undefined?'http://68.183.84.37:8000/'+pro.main_img:image" width="50" class="img-fluid rounded shadow-sm">
                                 <div class="ml-3 d-inline-block align-middle">
                                     <h5 class="mb-0">
                                         <a class="text-dark d-inline-block align-middle"></a>
                                     </h5>
                                 </div>
                             </div>
-                            <input type="file" (change)="uploadImage('image', $event.target.files, $event)" id="upload"
-                                class="form-control">
+                            <input type="file" (change)="uploadImage('image', $event.target.files, $event)" id="upload" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -328,35 +300,30 @@
                     <div class=" col-xs-12">
                         <label class="control-label ml">Edit Name</label>
                         <div class="input-group place-holder">
-                            <input type="text" [(ngModel)]="sub_selected.name" id="name" class="form-control"
-                                name="price" placeholder={{sub_pro?.name}} required>
+                            <input type="text" [(ngModel)]="sub_selected.name" id="name" class="form-control" name="price" placeholder={{sub_pro?.name}} required>
                         </div>
                     </div>
                     <div class=" col-xs-12">
                         <label class="control-label ml">Edit Tax</label>
                         <div class="input-group place-holder">
-                            <input type="text" [(ngModel)]="sub_selected.tax" id="tax" class="form-control" name="price"
-                                placeholder={{sub_pro?.tax}} required>
+                            <input type="text" [(ngModel)]="sub_selected.tax" id="tax" class="form-control" name="price" placeholder={{sub_pro?.tax}} required>
                         </div>
                     </div>
                     <div class=" col-xs-12">
                         <label class="control-label ml">Edit Discount</label>
                         <div class="input-group place-holder">
-                            <input type="text" [(ngModel)]="sub_selected.discount" id="discount" class="form-control"
-                                name="price" placeholder={{sub_pro?.discount}} required>
+                            <input type="text" [(ngModel)]="sub_selected.discount" id="discount" class="form-control" name="price" placeholder={{sub_pro?.discount}} required>
                         </div>
                     </div>
                     <div class=" col-xs-12">
                         <label class="control-label ml">Edit Description</label>
                         <div class="input-group place-holder">
-                            <input type="text" [(ngModel)]="sub_selected.description" id="description"
-                                class="form-control" name="price" placeholder={{sub_pro?.description}} required>
+                            <input type="text" [(ngModel)]="sub_selected.description" id="description" class="form-control" name="price" placeholder={{sub_pro?.description}} required>
                         </div>
                     </div>
 
                     <div class="modal-footer">
-                        <button class="btn btn-primary pr" (click)="onSubproductedit(sub_pro.id)"
-                            type="submit">Submit</button>
+                        <button class="btn btn-primary pr" (click)="onSubproductedit(sub_pro.id)" type="submit">Submit</button>
                     </div>
                 </form>
             </div>
@@ -375,8 +342,7 @@
 
             <div class="modal-header">
                 <h4 class="modal-title">Editing window</h4>
-                <button (click)="controls.modalImg=false" type="button" class="close"
-                    data-dismiss="modal">&times;</button>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <div class="modal-body">
@@ -385,21 +351,40 @@
                         <label class="control-label ml">Change Image</label>
                         <div class="input-group place-holder">
                             <div class="p-2">
-                                <img [src]="image==undefined?'http://68.183.84.37:8000/'+subimage:image" width="50"
-                                    class="img-fluid rounded shadow-sm">
+                                <img [src]="imageOne==undefined?'http://68.183.84.37:8000/'+subimage?.product_imageOne:imageOne" width="50" class="img-fluid rounded shadow-sm">
                                 <div class="ml-3 d-inline-block align-middle">
                                     <h5 class="mb-0">
                                         <a class="text-dark d-inline-block align-middle"></a>
                                     </h5>
                                 </div>
                             </div>
-                            <input type="file" (change)="postSubImage('image', $event.target.files, $event)" id="upload"
-                                class="form-control">
+                            <input type="file" (change)="postSubImageOne($event.target.files, $event)" id="upload" class="form-control">
+                        </div>
+                        <div class="input-group place-holder">
+                            <div class="p-2">
+                                <img [src]="imageTwo==undefined?'http://68.183.84.37:8000/'+subimage?.product_imageTwo:imageTwo" width="50" class="img-fluid rounded shadow-sm">
+                                <div class="ml-3 d-inline-block align-middle">
+                                    <h5 class="mb-0">
+                                        <a class="text-dark d-inline-block align-middle"></a>
+                                    </h5>
+                                </div>
+                            </div>
+                            <input type="file" (change)="postSubImageTwo($event.target.files, $event)" id="upload" class="form-control">
+                        </div>
+                        <div class="input-group place-holder">
+                            <div class="p-2">
+                                <img [src]="imageThree==undefined?'http://68.183.84.37:8000/'+subimage?.product_imageThree:imageThree" width="50" class="img-fluid rounded shadow-sm">
+                                <div class="ml-3 d-inline-block align-middle">
+                                    <h5 class="mb-0">
+                                        <a class="text-dark d-inline-block align-middle"></a>
+                                    </h5>
+                                </div>
+                            </div>
+                            <input type="file" (change)="postSubImageThree($event.target.files, $event)" id="upload" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary pr" (click)="change_sub_image(subid)"
-                            type="submit">Submit</button>
+                        <button class="btn btn-primary pr" (click)="change_sub_image(subimage.id)" type="submit">Submit</button>
                     </div>
                 </form>
             </div>
@@ -413,33 +398,36 @@
 
 <div class="modal fade" id="measureStock">
     <div class="modal-dialog modal-md">
-        <div class="modal-content" *ngFor="let i of measure_price">
+        <div class="modal-content">
 
             <div class="modal-header">
-                <h4 class="modal-title">Editing window</h4>
+                <h4 class="modal-title">Editing Measure and Stock</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <div class="modal-body">
-                <form class="md-form" #mailForm="ngForm" novalidate>
+                <form class="md-form">
                     <div class=" col-xs-12">
                         <label class="control-label ml">Edit Measure</label>
                         <div class="input-group place-holder">
-                            <input type="text" [(ngModel)]="measurestock_selected.measure" id="name"
-                                class="form-control" name="price" placeholder="{{i.measure}}" required>
+                            <input type="text" [(ngModel)]="measurestock_selected.measure" id="measure" class="form-control" name="measure" required>
                         </div>
                     </div>
 
                     <div class=" col-xs-12">
                         <label class="control-label ml">Edit Stock</label>
                         <div class="input-group place-holder">
-                            <input type="text" [(ngModel)]="measurestock_selected.stocks" id="price"
-                                class="form-control" name="name" placeholder="{{i.stocks}}">
+                            <input type="text" [(ngModel)]="measurestock_selected.stocks" id="stocks" class="form-control" name="stocks">
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary pr" (click)="update_measure_stock(i)"
-                            type="submit">Submit</button>
+                    <div class=" col-xs-12 ">
+                        <label class="control-label ml">Edit Measure Description</label>
+                        <div class="input-group place-holder ">
+                            <input type="text " [(ngModel)]="measurestock_selected.measure_description" id="measure_description" class="form-control " name="measure_description">
+                        </div>
+                    </div>
+                    <div class="modal-footer ">
+                        <button class="btn btn-primary pr" (click)="update_measure_stock(measurestock_selected)" type="submit">Submit</button>
                     </div>
                 </form>
             </div>
@@ -452,9 +440,9 @@
 
 <!-- The Modal of editing Price and Weight-->
 
-<div class="modal fade" id="PriceWeight">
+<div class="modal fade " id="PriceWeight">
     <div class="modal-dialog modal-md">
-        <div class="modal-content" *ngFor="let pw of price_weight">
+        <div class="modal-content">
 
             <div class="modal-header">
                 <h4 class="modal-title">Editing window</h4>
@@ -463,24 +451,27 @@
 
             <div class="modal-body">
                 <form class="md-form" #mailForm="ngForm" novalidate>
-                    <div class=" col-xs-12">
-                        <label class="control-label ml">Edit Price</label>
-                        <div class="input-group place-holder">
-                            <input type="text" [(ngModel)]="selectPrice_Weight.price" id="name" class="form-control"
-                                name="price" placeholder="{{pw.price}}" required>
+                    <div class="col-xs-12">
+                        <label class="control-label ml">Edit Buying Price</label>
+                        <div class="input-group place-holder ">
+                            <input type="text" [(ngModel)]="selectPrice_Weight.buying_price" id="buying_price" class="form-control" name="buying_price" required>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <label class="control-label ml">Edit Selling Price</label>
+                        <div class="input-group place-holder ">
+                            <input type="text" [(ngModel)]="selectPrice_Weight.price" id="price" class="form-control" name="price" required>
                         </div>
                     </div>
 
                     <div class=" col-xs-12">
                         <label class="control-label ml">Edit Weight</label>
-                        <div class="input-group place-holder">
-                            <input type="text" [(ngModel)]="selectPrice_Weight.weight" id="price" class="form-control"
-                                name="name" placeholder="{{pw.weight}}">
+                        <div class="input-group place-holder ">
+                            <input type="text" [(ngModel)]="selectPrice_Weight.weight" id="weight" class="form-control" name="weight">
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary pr" (click)="updatePriceWeight(pw)"
-                            type="submit">Submit</button>
+                    <div class="modal-footer ">
+                        <button class="btn btn-primary pr" (click)="updatePriceWeight(selectPrice_Weight)" type="submit">Submit</button>
                     </div>
                 </form>
             </div>

@@ -15,16 +15,19 @@ export class AccessOrderedProductsComponent implements OnInit {
   constructor(private cService: CommonService, private router: Router, private toastrService: ToastrService) { }
   selected: any = {};
   sub_selected: any = {};
-  measurestock_selected: any = {};
-  selectPrice_Weight: any = {};
+  measurestock_selected: any = {"measure": '', "stocks": '', "measure_description": ''};
+  selectPrice_Weight: any = {"buying_price": '', "price": '', "weight": ''};
   main_image_change: any = { "main_img": "" };
-  sub_image_change: any = { "product_image": "" };
+  sub_image_change: any = { "product_imageOne": "", "product_imageTwo": "", "product_imageThree": "" };
   m_name: string = "";
   errorMsg: any;
   data: any;
   subdata: any = [];
   deliveryDisplay: boolean = true;
   image: any;
+  imageOne: any;
+  imageTwo: any;
+  imageThree: any;
   imageName: any;
   del: any;
   del_sub: any;
@@ -33,7 +36,6 @@ export class AccessOrderedProductsComponent implements OnInit {
   get: any;
   sub_pro: any;
   subimage: any;
-  subid: any;
   delete: any;
   controls: any = { modalImg: false }
   measure_price: any;
@@ -48,14 +50,13 @@ export class AccessOrderedProductsComponent implements OnInit {
     this.cService.fetch_main_sub_products()
       .subscribe((res: any) => {
         this.data = res.data;
-        // if (this.subdata.length) {
-        //   for (var i = 0; i < this.data.length; i++) {
-        //     if (this.data[i].id == this.subdata[0].product_id) {
-        //       console.log(this.data[i].subPro)
-        //       this.products(this.data[i].subPro);
-        //     }
-        //   }
-        // }
+        if (this.subdata.length) {
+          for (var i = 0; i < this.data.length; i++) {
+            if (this.data[i].id == this.subdata[0].product_id) {
+              this.products(this.data[i].subPro);
+            }
+          }
+        }
       })
   }
 
@@ -90,12 +91,11 @@ export class AccessOrderedProductsComponent implements OnInit {
     this.subdata = sub;
   }
 
-  get_sub_pro(d) {
+  get_sub_product(d) {
     this.controls.modalImg = true;
-    this.cService.get_sub_pro(d.id).subscribe((sub: any) => {
+    this.cService.get_sub_pro(d).subscribe((sub: any) => {
       this.sub_pro = sub.data;
-      this.subimage = this.sub_pro.product_image
-      this.subid = this.sub_pro.id
+      this.subimage = this.sub_pro.images;
     })
   }
 
@@ -116,14 +116,12 @@ export class AccessOrderedProductsComponent implements OnInit {
   }
 
   uploadImage(w, e, z) {
-    this.imageName = w;
     this.main_image_change = e[0];
     var reader = new FileReader();
     reader.readAsDataURL(z.target.files[0]);
     reader.onload = (event) => {
       this.image = (<FileReader>event.target).result;
     }
-
   }
 
   on_Change(id) {
@@ -149,8 +147,6 @@ export class AccessOrderedProductsComponent implements OnInit {
       }
     })
   }
-
-
 
   onSubproductedit(id) {
     if (Object.keys(this.sub_selected).length == 0) {
@@ -200,36 +196,57 @@ export class AccessOrderedProductsComponent implements OnInit {
       })
   }
 
-  postSubImage(name, image, target) {
-    this.imageName = name;
-    this.sub_image_change = image[0];
+  postSubImageOne(image, target) {
+    this.sub_image_change.product_imageOne = image[0];
     var reader = new FileReader();
     reader.readAsDataURL(target.target.files[0]);
     reader.onload = (event) => {
-      this.image = (<FileReader>event.target).result;
+      this.imageOne = (<FileReader>event.target).result;
+    }
+  }
+  postSubImageTwo(image, target) {
+    this.sub_image_change.product_imageTwo = image[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(target.target.files[0]);
+    reader.onload = (event) => {
+      this.imageTwo = (<FileReader>event.target).result;
+    }
+  }
+  postSubImageThree(image, target) {
+    this.sub_image_change.product_imageThree = image[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(target.target.files[0]);
+    reader.onload = (event) => {
+      this.imageThree = (<FileReader>event.target).result;
     }
   }
 
   change_sub_image(id) {
+    if(id == undefined){
+      this.toastrService.warning("Please verify the Images id uploaded", "Error");
+    }
     let fd = new FormData();
-    fd.set('product_image', this.sub_image_change);
-    this.cService.edit_sub_pro(fd, id).subscribe((data: any) => {
-      if (data.statuscode == '200' && data.status == 'success') {
-        swal.fire({
-          type: 'success',
-          title: 'Change image',
-          text: data.message,
-        })
-        this.sub_image_change = {};
-        this.getProduct();
+    fd.set('product_imageOne', this.sub_image_change.product_imageOne);
+    fd.set('product_imageTwo', this.sub_image_change.product_imageTwo);
+    fd.set('product_imageThree', this.sub_image_change.product_imageThree);
+    if (this.sub_image_change.product_imageOne == "" || this.sub_image_change.product_imageOne == undefined) {
+      fd.delete('product_imageOne');
+    }
+    if (this.sub_image_change.product_imageTwo == "" || this.sub_image_change.product_imageTwo == undefined) {
+      fd.delete('product_imageTwo');
+    }
+    if (this.sub_image_change.product_imageThree == "" || this.sub_image_change.product_imageThree == undefined) {
+      fd.delete('product_imageThree');
+    }
 
+    this.cService.edit_subImages(fd, id).subscribe((data: any) => {
+      if (data.statuscode == '200' && data.status == 'success') {
+        this.toastrService.success("Images Changed successfully", "Success");
+        this.sub_image_change={ "product_imageOne": "", "product_imageTwo": "", "product_imageThree": "" };
+        this.getProduct();     
       }
       else if (data.statuscode == '404' && data.status == 'error') {
-        swal.fire({
-          type: 'warning',
-          title: 'Product details',
-          text: data.message,
-        })
+        this.toastrService.warning(data.message, "Error");
       }
     })
   }
@@ -243,6 +260,12 @@ export class AccessOrderedProductsComponent implements OnInit {
     })
   }
 
+  single_measure(id){
+    this.cService.get_single_measure(id).subscribe((data: any) => {
+      this.measurestock_selected = data.data
+    });
+  }
+
   update_measure_stock(d) {
     if (Object.keys(this.measurestock_selected).length == 0) {
       this.toastrService.warning("Please fill required fields", "Error");
@@ -251,8 +274,8 @@ export class AccessOrderedProductsComponent implements OnInit {
       this.cService.update_m_and_s(this.measurestock_selected, d.id).subscribe((measure_stocks: any) => {
         if (measure_stocks.statuscode == '200' && measure_stocks.status == 'success') {
           this.toastrService.success(measure_stocks.message, 'Success');
-          this.measurestock_selected = {};
-          this.getMeasurePrice(d.sub_product_id)
+          this.measurestock_selected = {measure: '', stocks: '', measure_description: ''};
+          this.getMeasurePrice(d.sub_product_id);
         }
         else if (measure_stocks.statuscode == '404' && measure_stocks.status == 'error') {
           this.errorMsg = measure_stocks.message;
@@ -290,6 +313,13 @@ export class AccessOrderedProductsComponent implements OnInit {
     this.price_weight = pw
   }
 
+  fetch_single_price(id){
+    this.cService.get_single_price(id).subscribe((data: any) => {
+      this.selectPrice_Weight = data.data
+      console.log(this.selectPrice_Weight)
+    });
+  }
+
   updatePriceWeight(pw) {
     if (Object.keys(this.selectPrice_Weight).length == 0) {
       this.toastrService.warning("Please fill required fields", "Error");
@@ -298,7 +328,7 @@ export class AccessOrderedProductsComponent implements OnInit {
       this.cService.update_m_and_s(this.selectPrice_Weight, pw.id).subscribe((pricestock: any) => {
         if (pricestock.statuscode == '200' && pricestock.status == 'success') {
           this.toastrService.success(pricestock.message, 'Success');
-          this.selectPrice_Weight = {};
+          this.selectPrice_Weight = {"buying_price": '', "price": '', "weight": ''};
           for (var i = 0; i < this.measure_price.length; i++) {
             this.getMeasurePrice(this.measure_price[i].sub_product_id)
           }

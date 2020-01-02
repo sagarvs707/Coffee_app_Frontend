@@ -52,16 +52,28 @@
                 </div>
 
                 <div class=" col-xs-12">
-                    <label class="control-label ml">Upload Image<span style="color: red">*</span></label>
+                    <label class="control-label ml">Upload Image One<span style="color: red">*</span></label>
                     <div class="input-group place-holder">
-                        <input type="file" (change)="uploadImage('image', $event.target.files)" id="upload" class="form-control" name="name">
+                        <input type="file" (change)="uploadImageOne($event.target.files)" id="upload" class="form-control" name="name">
+                    </div>
+                </div>
+                <div class=" col-xs-12">
+                    <label class="control-label ml">Upload Image Two</label>
+                    <div class="input-group place-holder">
+                        <input type="file" (change)="uploadImageTwo($event.target.files)" id="upload" class="form-control" name="name">
+                    </div>
+                </div>
+                <div class=" col-xs-12">
+                    <label class="control-label ml">Upload Image Three</label>
+                    <div class="input-group place-holder">
+                        <input type="file" (change)="uploadImageThree($event.target.files)" id="upload" class="form-control" name="name">
                     </div>
                 </div>
 
                 <div class=" col-xs-12">
-                    <button class="btn btn-primary pr" (click)="onSubmit()"  style="float: left; margin: 0px 30px 12px 26px;" type="submit">Save</button>                    
+                    <button class="btn btn-primary pr" (click)="onSubmit()" style="float: left; margin: 0px 30px 12px 26px;" type="submit">Save</button>
                     <button class="btn btn-primary pr" (click)="nextPage()" style="float: right; margin: 2px 30px 12px 26px;" type="submit">Next >></button>
-                </div>     
+                </div>
             </form>
         </div>
     </div>

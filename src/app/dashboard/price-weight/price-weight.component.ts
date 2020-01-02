@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class PriceWeightComponent implements OnInit {
 
   constructor(private cService: CommonService, private router: Router, private toastrService: ToastrService) { }
-  uploadgin = { price: '', weight: '', errorMsg: '' }
+  uploading = { buying_price: '', price: '', weight: '' }
 
   showjobID = true;
   names: any;
@@ -19,7 +19,6 @@ export class PriceWeightComponent implements OnInit {
   measureID: any = 0;
   failMsg: any;
   errMsgs: any;
-  success: any;
   measures: any;
 
   ngOnInit() {
@@ -45,39 +44,47 @@ export class PriceWeightComponent implements OnInit {
 
   getmeasuerstocks(e) {
     this.measureID = e.target.value
+    console.log(this.measureID)
   }
 
 
   onSubmit() {
+    console.log(this.uploading)
     let fd = new FormData();
     fd.set('measure_id', this.measureID);
-    fd.set('price', this.uploadgin.price);
-    fd.set('weight', this.uploadgin.weight);
+    fd.set('buying_price', this.uploading.buying_price);
+    fd.set('price', this.uploading.price);
+    fd.set('weight', this.uploading.weight);
 
     if (this.productId != 0) {
       if (this.measureID != 0) {
-        if (this.uploadgin.price == null || this.uploadgin.price != "") {
-          if (this.uploadgin.weight == null || this.uploadgin.weight != "") {
+        if (this.uploading.buying_price == null || this.uploading.buying_price != "") {
+          if (this.uploading.price == null || this.uploading.price != "") {
+            if (this.uploading.weight == null || this.uploading.weight != "") {
 
-            this.cService.postPriceandWeight(fd).subscribe((data: any) => {
-              if (data.statuscode == '200' && data.status == 'success') {
-                this.success = "Price and Weight added successfully";
-                this.toastrService.success(this.success, 'Success');
-                this.uploadgin = { price: '', weight: '', errorMsg: '' }
-              }
-              else if (data.statuscode == '404' && data.status == 'error') {
-                this.uploadgin.errorMsg = data.message;
-                this.toastrService.warning(this.uploadgin.errorMsg);
-              }
-            })
+              this.cService.postPriceandWeight(fd).subscribe((data: any) => {
+                console.log(data);
+                if (data.status == 'success' && data.statuscode == '200') {
+                  this.toastrService.success("Price and Weight added successfully", 'Success');
+                  this.uploading = { buying_price: '', price: '', weight: '' }
+                }
+                else{
+                  this.toastrService.warning(data.message, "Error");
+                }
+              })
+            }
+            else {
+              this.errMsgs = "Please enter weight"
+              this.toastrService.error(this.errMsgs, 'error');
+            }
           }
           else {
-            this.errMsgs = "Please enter weight"
+            this.errMsgs = "Please enter price"
             this.toastrService.error(this.errMsgs, 'error');
           }
         }
         else {
-          this.errMsgs = "Please enter price"
+          this.errMsgs = "Please enter Buying Price"
           this.toastrService.error(this.errMsgs, 'error');
         }
       }
@@ -91,6 +98,5 @@ export class PriceWeightComponent implements OnInit {
       this.toastrService.error(this.failMsg)
     }
   }
-
 
 }

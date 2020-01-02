@@ -45,7 +45,6 @@ export class AdminpageComponent implements OnInit {
   loadData() {
     this.cService.loadData().subscribe((res: any) => {
       this.data = res.data;
-      console.log(this.data)
       for(var i=0; i<this.data.length; i++){
         this.products(this.data[i].cost)
       }
@@ -76,6 +75,7 @@ export class AdminpageComponent implements OnInit {
 
   permission(id, p) {
     this.p[id] = p;
+    console.log(this.p)
 
   }
 
