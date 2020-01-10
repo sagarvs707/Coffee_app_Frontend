@@ -1,0 +1,141 @@
+<div class="container text-white text-right" style="padding-top: 1rem!important;">
+    <button class="btn btn-info " data-target="#create_app " data-toggle="modal">+ Add Application Version</button>
+</div>
+<!-- End -->
+<div class="container-fluid ">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+            <div class="card ">
+                <div class="card-body ">
+                    <h4 class="card-title " style="text-align: center; color: rgba(85, 42, 29, 0.897); padding-bottom: 13px; ">
+                        Mobile Application versions</h4>
+                    <div class="panel-body ">
+                        <div class="table-responsive">
+                            <table class="table ">
+                                <thead>
+                                    <tr>
+                                        <th scope="col " class="border-0 bg-light ">
+                                            <div class="p-2 px-3 text-uppercase ">Sl no</div>
+                                        </th>
+                                        <th scope="col " class="border-0 bg-light ">
+                                            <div class="p-2 px-3 text-uppercase ">APPLICATION PLATFORM</div>
+                                        </th>
+                                        <th scope="col " class="border-0 bg-light ">
+                                            <div class="py-2 text-uppercase ">APPLICATION VERSION</div>
+                                        </th>
+                                        <th scope="col " class="border-0 bg-light ">
+                                            <div class="py-2 text-uppercase ">APPLICATION DESCRIPTION</div>
+                                        </th>
+                                        <th scope="col " class="border-0 align-middle bg-light ">
+                                            <div class="py-2 text-uppercase align-middle ">Action</div>
+                                            <tr>
+                                                <th class="border-0 bg-light "> Edit</th>
+                                                <th class="border-0 bg-light "> Delete</th>
+                                            </tr>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let pro of app;let i=index" class="removetopline ">
+                                        <td class="border-0 align-middle "><strong>{{i+1}}</strong></td>
+                                        <td class="border-0 align-middle "><strong>{{pro.app_key}}</strong></td>
+                                        <td class="border-0 align-middle "><strong>{{pro.app_version}}</strong></td>
+                                        <td class="border-0 align-middle "><strong>{{pro.description}}</strong></td>
+                                        <td class="align-middle ">
+                                            <tr>
+                                                <td style="cursor: pointer "><img src="assets/images/icons/edit.png " width="16px " style="margin: 0px 0px 0px 0px " (click)="get_single_app_version(pro.id) " data-toggle="modal" data-target="#edit_app"></td>
+                                                <td style="cursor: pointer "><img src="assets/images/icons/trash.png " width="16px " style="margin: 0px 0px 0px 20px " (click)="delete(pro.id) "></td>
+                                            </tr>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The Modal of Post Application version-->
+
+<div class="modal fade" id="create_app">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Create Application Version</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form class="md-form" #mailForm="ngForm" novalidate>
+                    <div class=" col-xs-12">
+                        <label class="control-label ml">Add Platform name</label>
+                        <div class="input-group place-holder">
+                            <input type="text" [(ngModel)]="selected.app_platform" id="app_platform" class="form-control" name="app_platform" required>
+                        </div>
+                    </div>
+                    <div class=" col-xs-12">
+                        <label class="control-label ml">Add Version</label>
+                        <div class="input-group place-holder">
+                            <input type="text" [(ngModel)]="selected.app_version" id="app_version" class="form-control" name="app_version">
+                        </div>
+                    </div>
+                    <div class=" col-xs-12">
+                        <label class="control-label ml">Add Description</label>
+                        <div class="input-group place-holder">
+                            <input type="text" [(ngModel)]="selected.description" id="description" class="form-control" name="description">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary pr" (click)="create_app()" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal of Post Application version-->
+
+<!-- The Modal of editing Application version-->
+
+<div class="modal fade" id="edit_app">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Editing window</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">
+                <form class="md-form" #mailForm="ngForm" novalidate>
+                    <div class=" col-xs-12">
+                        <label class="control-label ml">Edit Application Platform</label>
+                        <div class="input-group place-holder">
+                            <input type="text" [(ngModel)]="get.app_key" id="app_key" class="form-control" name="app_key" required>
+                        </div>
+                    </div>
+                    <div class=" col-xs-12">
+                        <label class="control-label ml">Edit Application Version</label>
+                        <div class="input-group place-holder">
+                            <input type="text" [(ngModel)]="get.app_version" id="app_version" class="form-control" name="app_version">
+                        </div>
+                    </div>
+                    <div class=" col-xs-12">
+                        <label class="control-label ml">Edit Application Description</label>
+                        <div class="input-group place-holder">
+                            <input type="text" [(ngModel)]="get.description" id="description" class="form-control" name="description">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary pr" (click)="update_app_versions(get)" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal of editing Application version-->
