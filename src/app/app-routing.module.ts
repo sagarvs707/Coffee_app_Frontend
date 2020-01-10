@@ -9,6 +9,8 @@ import { MainProductComponent } from './dashboard/main-product/main-product.comp
 import { MeasureAndStocksComponent } from './dashboard/measure-and-stocks/measure-and-stocks.component';
 import { ProductTableComponent } from './dashboard/product-table/product-table.component';
 import { AccessOrderedProductsComponent } from './dashboard/access-ordered-products/access-ordered-products.component';
+import { BannerComponent } from './dashboard/banner/banner.component';
+import { AppVersionComponent } from './dashboard/app-version/app-version.component';
 
 
 
@@ -22,7 +24,8 @@ const routes: Routes = [
       {path:'measure_stock', component:MeasureAndStocksComponent},
       {path:'product_table', component:ProductTableComponent},
       {path:'permit_product', component:AccessOrderedProductsComponent},
-
+      {path:'banner', component:BannerComponent},
+      {path:'app_version', component:AppVersionComponent},
     ]
   },
   {path:'', component: LoginComponent},

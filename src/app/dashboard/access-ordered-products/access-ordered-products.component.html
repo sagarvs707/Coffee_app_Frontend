@@ -35,7 +35,7 @@
                                     <tr *ngFor="let pro of data" class="removetopline">
                                         <th scope="row" class="border-0">
                                             <div class="p-2">
-                                                <img src="http://68.183.84.37:8000/{{pro.main_img}}" width="70" class="img-fluid rounded shadow-sm">
+                                                <img src="http://68.183.84.37:8000/{{pro.main_img}}" width="60" class="img-fluid rounded shadow-sm">
                                                 <div class="ml-3 d-inline-block align-middle">
                                                     <h5 class="mb-0"> <a class="text-dark d-inline-block align-middle">{{pro.name}}</a>
                                                     </h5>
@@ -95,24 +95,22 @@
                                         <td>
                                             <div class="p-2">
                                                 <img src="http://68.183.84.37:8000/{{i.images.product_imageOne}}" width="70" class="img-fluid rounded shadow-sm">
-                                                <div class="ml-3 d-inline-block align-middle">
-                                                    <h5 class="mb-0"> <a class="text-dark d-inline-block align-middle">{{i.name}}</a>
-                                                    </h5>
+                                                <div>
+                                                    <h5 class="mb-0"> <a class="text-dark d-inline-block align-middle">{{i.name}}</a></h5>
                                                     <h5 class="mb-0"><a class="editImage" (click)="get_sub_product(i.id)" data-toggle="modal" data-target="#subproimage">Change
                                                         Image</a></h5>
-
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="align-middle">{{i.tax}}</td>
-                                        <td class="align-middle">{{i.discount}}</td>
-                                        <td class="align-middle">{{i.description}}</td>
-                                        <td class="align-middle">{{i.created_at}}</td>
-                                        <td class="align-middle">
+                                        <td>{{i.tax}}</td>
+                                        <td>{{i.discount}}</td>
+                                        <td>{{i.description}}</td>
+                                        <td>{{i.created_at}}</td>
+                                        <td>
                                             <tr>
                                                 <td class="border-0"><img src="assets/images/icons/view.png" width="16px" style="cursor: pointer" (click)="getMeasurePrice(i.id)">
                                                 </td>
-                                                <td class="border-0"><img src="assets/images/icons/edit.png" width="16px" style="cursor: pointer; margin: 0px 0px 0px 14px;" (click)="get_sub_pro(i)" data-toggle="modal" data-target="#subModel">
+                                                <td class="border-0"><img src="assets/images/icons/edit.png" width="16px" style="cursor: pointer; margin: 0px 0px 0px 14px;" (click)="get_sub_product(i)" data-toggle="modal" data-target="#subModel">
                                                 </td>
                                                 <td class="border-0"><img src="assets/images/icons/trash.png" (click)="delete_subproduct(i.id)" style="width: 16px; margin: 0px 0px 0px 20px; cursor: pointer">
                                                 </td>
@@ -189,7 +187,6 @@
                                                             </td>
                                                         </tr>
                                                     </td>
-
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -223,14 +220,14 @@
                                 <div class=" col-xs-12">
                                     <label class="control-label ml">Edit Name</label>
                                     <div class="input-group place-holder">
-                                        <input type="text" [(ngModel)]="selected.name" id="name" class="form-control" name="price" placeholder="{{pro.name}}" required>
+                                        <input type="text" [(ngModel)]="selected.name" id="name" class="form-control" name="name" placeholder="{{pro.name}}" required>
                                     </div>
                                 </div>
 
                                 <div class=" col-xs-12">
                                     <label class="control-label ml">Edit Price</label>
                                     <div class="input-group place-holder">
-                                        <input type="text" [(ngModel)]="selected.price" id="price" class="form-control" name="name" placeholder="{{pro.price}}">
+                                        <input type="text" [(ngModel)]="selected.price" id="price" class="form-control" name="price" placeholder="{{pro.price}}">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -336,15 +333,13 @@
 
 <!-- The Modal of editing Image sub product -->
 
-<div class="modal fade" id="subproimage">
+<div *ngIf="controls.modalImg" class="modal fade" id="subproimage">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-
             <div class="modal-header">
                 <h4 class="modal-title">Editing window</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-
             <div class="modal-body">
                 <form class="md-form" #mailForm="ngForm" novalidate>
                     <div class=" col-xs-12">

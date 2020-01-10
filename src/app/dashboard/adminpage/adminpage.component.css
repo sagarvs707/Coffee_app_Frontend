@@ -1,19 +1,21 @@
-.left th{
+.left th {
     text-align: justify;
     width: 700px;
 }
 
-.color{
+.color {
     background-color: rgb(209, 209, 209);
     color-adjust: #ffff;
 }
-.thirdcol_color th{
-    background-color: rgb(208, 224, 147);
 
+.thirdcol_color th {
+    background-color: rgb(208, 224, 147);
 }
+
 tr:hover {
     background-color: #dbc1b3c0;
-  }
-.is-active{
+}
+
+.is-active {
     background-color: green;
 }

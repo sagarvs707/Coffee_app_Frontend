@@ -15,6 +15,8 @@ import { ProductTableComponent } from './dashboard/product-table/product-table.c
 import { AccessOrderedProductsComponent } from './dashboard/access-ordered-products/access-ordered-products.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { BannerComponent } from './dashboard/banner/banner.component';
+import { AppVersionComponent } from './dashboard/app-version/app-version.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { ToastrModule } from 'ngx-toastr';
     MeasureAndStocksComponent,
     ProductTableComponent,
     AccessOrderedProductsComponent,
+    BannerComponent,
+    AppVersionComponent,
 
   ],
   imports: [

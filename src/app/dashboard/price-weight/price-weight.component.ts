@@ -44,12 +44,10 @@ export class PriceWeightComponent implements OnInit {
 
   getmeasuerstocks(e) {
     this.measureID = e.target.value
-    console.log(this.measureID)
   }
 
 
   onSubmit() {
-    console.log(this.uploading)
     let fd = new FormData();
     fd.set('measure_id', this.measureID);
     fd.set('buying_price', this.uploading.buying_price);
@@ -58,33 +56,25 @@ export class PriceWeightComponent implements OnInit {
 
     if (this.productId != 0) {
       if (this.measureID != 0) {
-        if (this.uploading.buying_price == null || this.uploading.buying_price != "") {
-          if (this.uploading.price == null || this.uploading.price != "") {
-            if (this.uploading.weight == null || this.uploading.weight != "") {
-
-              this.cService.postPriceandWeight(fd).subscribe((data: any) => {
-                console.log(data);
-                if (data.status == 'success' && data.statuscode == '200') {
-                  this.toastrService.success("Price and Weight added successfully", 'Success');
-                  this.uploading = { buying_price: '', price: '', weight: '' }
-                }
-                else{
-                  this.toastrService.warning(data.message, "Error");
-                }
-              })
-            }
-            else {
-              this.errMsgs = "Please enter weight"
-              this.toastrService.error(this.errMsgs, 'error');
-            }
+        if (this.uploading.price == null || this.uploading.price != "") {
+          if (this.uploading.weight == null || this.uploading.weight != "") {
+            this.cService.postPriceandWeight(fd).subscribe((data: any) => {
+              if (data.status == 'success' && data.statuscode == '200') {
+                this.toastrService.success("Price and Weight added successfully", 'Success');
+                this.uploading = { buying_price: '', price: '', weight: '' }
+              }
+              else {
+                this.toastrService.warning(data.message, "Error");
+              }
+            })
           }
           else {
-            this.errMsgs = "Please enter price"
+            this.errMsgs = "Please enter weight"
             this.toastrService.error(this.errMsgs, 'error');
           }
         }
         else {
-          this.errMsgs = "Please enter Buying Price"
+          this.errMsgs = "Please enter price"
           this.toastrService.error(this.errMsgs, 'error');
         }
       }

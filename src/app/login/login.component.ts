@@ -21,16 +21,13 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     this.cService.login({'email':this.login.email, 'password':this.login.password})
     .subscribe((data:any) => {
-      console.log(data)
       if(data.statuscode=='200' && data.status=='success'){
         this.cService.storeToken(data.token)
-        console.log(data.token)
         this.toastrService.success("Successfully log in ");
         this.router.navigate(['dashboard/adminpage'])
       }
       else if(data.status=='fail'){
       this.alertError=false
-      console.log(data.error)
       this.toastrService.error("Please provide valid Mail id and Password", "error");
       this.login.errorMsg=data.error;
       }

@@ -21,9 +21,9 @@ export class AdminpageComponent implements OnInit {
   order_pro_id: any;
   persmissions: any = { ids: [], p: [] };
   ids: any = [];
-  allcount: string;
-  pOrder;
-  tusers;
+  stocks: any;
+  pOrder: any;
+  tusers: any;
   IsmodelShow = false;
   productsDetails: any = { details: {} };
   permiting_product: any = {}
@@ -75,8 +75,6 @@ export class AdminpageComponent implements OnInit {
 
   permission(id, p) {
     this.p[id] = p;
-    console.log(this.p)
-
   }
 
   updated() {
@@ -111,13 +109,13 @@ export class AdminpageComponent implements OnInit {
 
   sumStocks() {
     this.cService.totalStock().subscribe((status: any) => {
-      this.allcount = status
+      this.stocks = status;
     })
   }
 
   pendingOrder() {
     this.cService.pendingOrders().subscribe((orders: any) => {
-      this.pOrder = orders
+      this.pOrder = orders;
     })
   }
 

@@ -91,11 +91,11 @@ export class AccessOrderedProductsComponent implements OnInit {
     this.subdata = sub;
   }
 
-  get_sub_product(d) {
+  get_sub_product(id) {
     this.controls.modalImg = true;
-    this.cService.get_sub_pro(d).subscribe((sub: any) => {
+    this.cService.get_sub_pro(id).subscribe((sub: any) => {
       this.sub_pro = sub.data;
-      this.subimage = this.sub_pro.images;
+      this.subimage = this.sub_pro.sub_pro_images;
     })
   }
 
@@ -316,7 +316,6 @@ export class AccessOrderedProductsComponent implements OnInit {
   fetch_single_price(id){
     this.cService.get_single_price(id).subscribe((data: any) => {
       this.selectPrice_Weight = data.data
-      console.log(this.selectPrice_Weight)
     });
   }
 

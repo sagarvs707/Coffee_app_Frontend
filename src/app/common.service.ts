@@ -13,7 +13,7 @@ export class CommonService {
 
   configurations = {
     baseURL: 'http://68.183.84.37:8000/',
-    URL: 'http://127.0.0.1:8000/',
+    // baseURL: 'http://127.0.0.1:8000/',
     httpOptions: {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     },
@@ -42,8 +42,14 @@ export class CommonService {
       update_measure_stock: 'product/update_measurestock/',   //edit and delete measure and stock
       edit_price_weight: 'product/edit_price_weight/',    //edit and delete price and weight
       delete_price_weight: 'product/delete_price_weight/',
-
+      get_app_versions: 'user/create_version/',
+      get_single_app_versions: 'user/get_single_appVersion/',
+      get_update_app_versions: 'user/update_version/',
+      create_appVersion: 'user/create_version/',
       aceessSubImages: 'product/access_sub_images/', //edit or delete the subproduct Images
+      create_banner: 'banner/create/',
+      get_all_banner_images: 'banner/get_all_banner/',
+      get_single_banner_image: 'banner/access_banner/',
     }
   }
   private _current_user = new BehaviorSubject<any>(0);
@@ -165,6 +171,45 @@ export class CommonService {
     return this.http.get(this.configurations.baseURL + this.configurations.apiList.getSingle_price + id + '/', this.configurations.httpOptions)
   }
 
+  create_banner(data){
+    return this.http.post(this.configurations.baseURL + this.configurations.apiList.create_banner, data)
+  }
+
+  get_all_banners(){
+    return this.http.get(this.configurations.baseURL + this.configurations.apiList.get_all_banner_images, this.configurations.httpOptions)
+  }
+
+  get_single_banner(id){
+    return this.http.get(this.configurations.baseURL + this.configurations.apiList.get_single_banner_image+id+'/', this.configurations.httpOptions)
+  }
+
+  edit_single_banner(id, data){
+    return this.http.put(this.configurations.baseURL + this.configurations.apiList.get_single_banner_image+id+'/', data)
+  }
+
+  delete_single_banner(id){
+    return this.http.delete(this.configurations.baseURL + this.configurations.apiList.get_single_banner_image+id+'/', this.configurations.httpOptions)
+  }
+
+  create_app_version(data) {
+    return this.http.post(this.configurations.baseURL + this.configurations.apiList.create_appVersion, data)
+  }
+
+  get_app_version(){
+    return this.http.get(this.configurations.baseURL + this.configurations.apiList.get_app_versions, this.configurations.httpOptions)
+  }
+
+  get_single_app_versions(id){
+    return this.http.get(this.configurations.baseURL + this.configurations.apiList.get_single_app_versions+id+'/', this.configurations.httpOptions)
+  }
+
+  update_app_version(data, id){
+    return this.http.put(this.configurations.baseURL + this.configurations.apiList.get_update_app_versions + id + '/', data)
+  }
+
+  delete_app_version(id){
+    return this.http.delete(this.configurations.baseURL + this.configurations.apiList.get_update_app_versions + id + '/',  this.configurations.httpOptions)
+  }
 
   
 
@@ -201,7 +246,6 @@ export class CommonService {
     } else {
       localStorage.setItem("token", token);
       this.resolveToken(token);
-      console.log(token)
     }
   }
   getDecodedAccessToken(token) {

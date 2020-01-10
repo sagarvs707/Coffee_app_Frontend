@@ -45,17 +45,13 @@ export class MeasureAndStocksComponent implements OnInit {
     if (this.productId != 0) {
       if (this.uploadgin.measure == null || this.uploadgin.measure != ""){
         if (this.uploadgin.stock == null || this.uploadgin.stock != ""){
-
           this.cService.postMeasureStock(fd).subscribe((data: any) => {
-            console.log(data.statuscode, data.status)
-    
             if (data.statuscode == '200' && data.status == 'success') {
               this.success = "Measure and Stocks added successfully";
               this.toastrService.success(this.success);
               this.uploadgin = { measure: '', stock: '', measure_description: '', errorMsg: '' }
             }
             else if (data.statuscode == '404' && data.status == 'error') {
-              console.log(data.message)
               this.uploadgin.errorMsg = data.message;
               this.toastrService.info(this.uploadgin.errorMsg, "Warning");
             }

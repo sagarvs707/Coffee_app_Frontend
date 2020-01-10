@@ -48,7 +48,6 @@ export class SubProductComponent implements OnInit {
 
   selectMainProd(e) {
     this.productId = e.target.value
-    console.log(this.productId)
   }
 
   onSubmit() {
@@ -63,28 +62,21 @@ export class SubProductComponent implements OnInit {
     fd.set('product_imageThree', this.imageThree);
     if (this.productId != 0) {
       if (this.uploadgin.name == null || this.uploadgin.name != "") {
-        if (this.uploadgin.tax == null || this.uploadgin.tax != "") {
-          if (this.imageOne == null || this.imageOne != "") {
-
-            this.cService.sendsubProduct(fd).subscribe((data: any) => {
-              if (data.statuscode == '200' && data.status == 'success') {
-                this.uploadgin.errorMsg = data.message;
-                this.toastrService.success(data.message, 'Success');
-                this.uploadgin = { product: '', name: '', tax: '', discount: '', description: '', errorMsg: '' }
-              }
-              else if (data.statuscode == '404' && data.status == 'error') {
-                console.log(data.message)
-                this.uploadgin.errorMsg = data.message;
-                this.toastrService.error(data.message);
-              }
-            })
-          }
-          else {
-            this.toastrService.error("Please select a Image", "Error");
-          }
+        if (this.imageOne == null || this.imageOne != "") {
+          this.cService.sendsubProduct(fd).subscribe((data: any) => {
+            if (data.statuscode == '200' && data.status == 'success') {
+              this.uploadgin.errorMsg = data.message;
+              this.toastrService.success(data.message, 'Success');
+              this.uploadgin = { product: '', name: '', tax: '', discount: '', description: '', errorMsg: '' }
+            }
+            else if (data.statuscode == '404' && data.status == 'error') {
+              this.uploadgin.errorMsg = data.message;
+              this.toastrService.error(data.message);
+            }
+          })
         }
         else {
-          this.toastrService.error("Please enter Tax", "Error");
+          this.toastrService.error("Please select a Image", "Error");
         }
       }
       else {
